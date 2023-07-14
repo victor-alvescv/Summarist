@@ -1,0 +1,31 @@
+import { openSignInModal } from "@/redux/modalSlice";
+import { useDispatch } from "react-redux";
+
+export default function Nav() {
+  const dispatch = useDispatch();
+
+  return (
+    <nav className="nav">
+      <div className="nav__wrapper">
+        <figure className="nav__img--mask">
+          <img
+            className="nav__img"
+            src="https://summarist.vercel.app/_next/static/media/logo.1b1c490b.png"
+            alt="logo"
+          />
+        </figure>
+        <ul className="nav__list--wrapper">
+          <li
+            onClick={() => dispatch(openSignInModal())}
+            className="nav__list nav__list--login"
+          >
+            Login
+          </li>
+          <li className="nav__list nav__list--mobile">About</li>
+          <li className="nav__list nav__list--mobile">Contact</li>
+          <li className="nav__list nav__list--mobile">Help</li>
+        </ul>
+      </div>
+    </nav>
+  );
+}
