@@ -7,18 +7,18 @@ import { MdLogout } from "react-icons/md";
 import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase";
+import { useDispatch } from "react-redux";
+import { openSignInModal } from "@/redux/modalReducer";
 
 export default function ForYouSideBar() {
   const router = useRouter();
+  const dispatch = useDispatch()
 
   async function handleLogOutandLogIn() {
     console.log('dhawio')
     await signOut(auth);
   }
 
-  function forYouBtn() {
-    router.push("/for-you");
-  }
 
   return (
     <div className="sidebar">
@@ -35,7 +35,7 @@ export default function ForYouSideBar() {
             <div className="sidebar__icon--wrapper">
               <AiOutlineHome className="sidebar__icon" />
             </div>
-            <div onClick={forYouBtn} className="sidebar__link--text">For you</div>
+            <div  className="sidebar__link--text">For you</div>
           </a>
           <a className="sidebar__link--wrapper">
             <div

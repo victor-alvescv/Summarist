@@ -1,7 +1,10 @@
 import React from "react";
-import SignInModal from './modals/SignInModal'
+import SignInModal from "./modals/SignInModal";
+import { openSignInModal } from "@/redux/modalReducer";
+import { useDispatch } from "react-redux";
 
 export default function LandingPage() {
+  const dispatch = useDispatch()
 
   return (
     <section id="landing">
@@ -20,6 +23,12 @@ export default function LandingPage() {
                 <br className="remove--tablet" />
                 and even people who don’t like to read.
               </div>
+              <button
+                onClick={() => dispatch(openSignInModal())}
+                className="btn home__cta--btn"
+              >
+                Login
+              </button>
               <SignInModal />
             </div>
             <figure className="landing__image--mask">

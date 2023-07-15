@@ -70,21 +70,12 @@ export default function SignInModal() {
             email: currentUser?.email,
           })
         );
-        if(router.pathname === '/') {
-          router.push("/for-you");
-        }
       });
       return unsubscribe;
-  });
+  }, []);
 
   return (
     <>
-      <button
-        onClick={() => dispatch(openSignInModal())}
-        className="btn home__cta--btn"
-      >
-        Login
-      </button>
       <Modal className="modal" open={isOpen} onClose={handleCloseModal}>
         <div className="auth">
           <RxCross2 onClick={handleCloseModal} className="cross__btn" />

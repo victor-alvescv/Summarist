@@ -68,7 +68,6 @@ export default function SignUpModal() {
       );
       dispatch(closeSignUpModal());
       dispatch(closeSignInModal());
-      router.push("/for-you");
     });
 
     return unsubscribe;

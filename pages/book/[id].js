@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { openSignInModal } from "@/redux/modalReducer";
+import SignInModal from "@/components/modals/SignInModal";
 
 export default function id() {
   const dispatch = useDispatch();
@@ -23,16 +24,12 @@ export default function id() {
     setBookData(data);
   }
 
-  const OpenModal = () => {
-    dispatch(openSignInModal());
-  };
-
   useEffect(() => {
     if (id !== undefined) {
       getBookById();
     }
   }, [id]);
-
+  
   return (
     <>
       <ForYouSearch />
@@ -66,7 +63,7 @@ export default function id() {
                   <div className="inner-book__description">
                     <div className="inner-book__icon">
                       <HiOutlineMicrophone className="inner__icon" />
-       \             </div>
+                    </div>
                     <div className="inner-book__type">{bookData.type}</div>
                   </div>
                   <div className="inner-book__description">
@@ -81,7 +78,7 @@ export default function id() {
               </div>
               <div className="inner-book__read--btn-wrapper">
                 <button
-                  onClick={OpenModal}
+                  onClick={() => dispatch(openSignInModal())}
                   className="inner-book__read--btn"
                 >
                   <div className="inner-book__read--icon">
@@ -89,6 +86,7 @@ export default function id() {
                   </div>
                   <div className="inner-book__read--text">Read</div>
                 </button>
+                <SignInModal />
                 <button className="inner-book__read--btn">
                   <div className="inner-book__read--icon">
                     <HiOutlineMicrophone className="inner__btn--icon" />
