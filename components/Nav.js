@@ -1,4 +1,4 @@
-import { openSignInModal } from "@/redux/modalSlice";
+import { openSignInModal } from "@/redux/modalReducer";
 import { useDispatch } from "react-redux";
 
 export default function Nav() {

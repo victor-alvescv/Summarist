@@ -6,13 +6,13 @@ import {
   closeSignInModal,
   closeSignUpModal,
   openSignUpModal,
-} from "@/redux/modalSlice";
+} from "@/redux/modalReducer";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { setUser } from "@/redux/userSlice";
+import { setUser } from "@/redux/userReducer";
 import { useRouter } from "next/router";
 import { Ring } from "@uiball/loaders";
 import { auth, provider } from "@/firebase";

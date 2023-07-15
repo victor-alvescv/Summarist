@@ -8,7 +8,7 @@ import { BsBookmark } from "react-icons/bs";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { openSignInModal } from "@/redux/modalSlice";
+import { openSignInModal } from "@/redux/modalReducer";
 
 export default function id() {
   const dispatch = useDispatch();
@@ -22,6 +22,10 @@ export default function id() {
     );
     setBookData(data);
   }
+
+  const OpenModal = () => {
+    dispatch(openSignInModal());
+  };
 
   useEffect(() => {
     if (id !== undefined) {
@@ -62,7 +66,7 @@ export default function id() {
                   <div className="inner-book__description">
                     <div className="inner-book__icon">
                       <HiOutlineMicrophone className="inner__icon" />
-                    </div>
+       \             </div>
                     <div className="inner-book__type">{bookData.type}</div>
                   </div>
                   <div className="inner-book__description">
@@ -77,7 +81,7 @@ export default function id() {
               </div>
               <div className="inner-book__read--btn-wrapper">
                 <button
-                  onClick={() => dispatch(openSignInModal())}
+                  onClick={OpenModal}
                   className="inner-book__read--btn"
                 >
                   <div className="inner-book__read--icon">

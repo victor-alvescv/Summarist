@@ -1,4 +1,4 @@
-import { openSignInModal } from "@/redux/modalSlice";
+import { openSignInModal } from "@/redux/modalReducer";
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";

@@ -3,13 +3,13 @@ import { RxCross2 } from "react-icons/rx";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { closeSignInModal, openSignInModal } from "@/redux/modalSlice";
+import { closeSignInModal, openSignInModal } from "@/redux/modalReducer";
 import SignUpModal from "./SignUpModal";
 import PasswordModal from "./ForgotPasswordModal";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "@/firebase";
-import { setUser } from "@/redux/userSlice";
+import { setUser } from "@/redux/userReducer";
 import { useRouter } from "next/router";
 import { Ring } from "@uiball/loaders";
 
@@ -24,6 +24,7 @@ export default function SignInModal() {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [guestAuth, setGuestAuth] = useState(false);
+
 
   async function handleSignIn() {
     setLoading(true);

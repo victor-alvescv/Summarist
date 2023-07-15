@@ -1,4 +1,4 @@
-import { openSignInModal } from "@/redux/modalSlice";
+import { openSignInModal } from "@/redux/modalReducer";
 import React from "react";
 import { BsStarFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
