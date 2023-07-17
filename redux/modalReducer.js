@@ -11,16 +11,10 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openSignInModal: (state) => {
-      state.SignInModalOpen = true;
-    },
-    closeSignInModal: (state) => {
-      state.SignInModalOpen = false;
+      state.SignInModalOpen = !state.SignInModalOpen;
     },
     openSignUpModal: (state) => {
-      state.SignUpModalOpen = true;
-    },
-    closeSignUpModal: (state) => {
-      state.SignUpModalOpen = false;
+      state.SignUpModalOpen = !state.SignUpModalOpen;
     },
     openPasswordModal: (state) => {
       state.PasswordModalOpen = true;
@@ -31,6 +25,13 @@ const modalSlice = createSlice({
   },
 });
 
-export const { openSignInModal, closeSignInModal, openSignUpModal, closeSignUpModal, openPasswordModal, closePasswordModal } = modalSlice.actions;
+export const {
+  openSignInModal,
+  closeSignInModal,
+  openSignUpModal,
+  closeSignUpModal,
+  openPasswordModal,
+  closePasswordModal,
+} = modalSlice.actions;
 
 export default modalSlice.reducer;

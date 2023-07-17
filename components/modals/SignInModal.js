@@ -3,15 +3,15 @@ import { RxCross2 } from "react-icons/rx";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { closeSignInModal, openSignInModal } from "@/redux/modalReducer";
+import { openSignInModal } from "@/redux/modalReducer";
 import SignUpModal from "./SignUpModal";
 import PasswordModal from "./ForgotPasswordModal";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "@/firebase";
 import { setUser } from "@/redux/userReducer";
-import { useRouter } from "next/router";
 import { Ring } from "@uiball/loaders";
+import { useRouter } from "next/router";
 
 export default function SignInModal() {
   const isOpen = useSelector((state) => state.modals.SignInModalOpen);
@@ -25,12 +25,11 @@ export default function SignInModal() {
   const [error, setError] = useState("");
   const [guestAuth, setGuestAuth] = useState(false);
 
-
   async function handleSignIn() {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      dispatch(closeSignInModal());
+      dispatch(openSignInModal());
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -44,7 +43,7 @@ export default function SignInModal() {
     }
     setEmail("");
     setPassword("");
-    dispatch(closeSignInModal());
+    dispatch(openSignInModal());
   }
 
   function handleGoogleSignIn() {
@@ -58,20 +57,25 @@ export default function SignInModal() {
       "guest37899072@gmail.com",
       "GDhdfug9dgiowhd"
     );
-    dispatch(closeSignInModal());
+    dispatch(openSignInModal());
   }
 
   useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        setValue(localStorage.getItem("email"));
-        if (!currentUser) return;
-        dispatch(
-          setUser({
-            email: currentUser?.email,
-          })
-        );
-      });
-      return unsubscribe;
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setValue(localStorage.getItem("email"));
+      if (router.pathname === "/") {
+        if (currentUser) {
+          router.push("/for-you");
+        }
+      }
+      if (!currentUser) return;
+      dispatch(
+        setUser({
+          email: currentUser?.email,
+        })
+      );
+    });
+    return unsubscribe;
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import Numbers from "./Numbers";
 import Footer from "./Footer";
 
 export default function HomePage() {
+
   return (
     <>
       <div data-aos="fade-left">

@@ -4,18 +4,23 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineStar, AiOutlineClockCircle } from "react-icons/ai";
 import { HiOutlineMicrophone, HiOutlineLightBulb } from "react-icons/hi";
 import { VscBook } from "react-icons/vsc";
-import { BsBookmark } from "react-icons/bs";
+import { TbPremiumRights } from "react-icons/tb";
+import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { openSignInModal } from "@/redux/modalReducer";
 import SignInModal from "@/components/modals/SignInModal";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase";
 
 export default function id() {
   const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router?.query;
   const [bookData, setBookData] = useState([]);
+  const [user, setUser] = useState(null);
+  const [savedBook, setSavedBook] = useState(null);
 
   async function getBookById() {
     const { data } = await axios.get(
@@ -24,12 +29,39 @@ export default function id() {
     setBookData(data);
   }
 
+  function saveBookInLibrary() {
+    if (!user) {
+      dispatch(openSignInModal());
+    } else {
+      setSavedBook(true);
+    }
+    if (savedBook === true) {
+      setSavedBook(null);
+    }
+  }
+
+  function modalOpenOnUserStatus() {
+    if (!user) {
+      dispatch(openSignInModal());
+    } else if (bookData.subscriptionRequired) {
+      router.push("/choose-plan");
+    } else if (!bookData.subscriptionRequired) {
+      router.push(`/player/${id}`);
+    }
+  }
+
   useEffect(() => {
     if (id !== undefined) {
       getBookById();
     }
+
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return unsubscribe;
   }, [id]);
-  
+
   return (
     <>
       <ForYouSearch />
@@ -38,7 +70,10 @@ export default function id() {
         <div className="container">
           <div className="inner__wrapper">
             <div className="inner__book">
+              <div className="inner__book--premium">
               <div className="inner-book__title">{bookData.title}</div>
+              {bookData.subscriptionRequired && <TbPremiumRights />}
+              </div>
               <div className="inner-book__author">{bookData.author}</div>
               <div className="inner-book__sub--title">{bookData.subTitle}</div>
               <div className="inner-book__wrapper">
@@ -78,7 +113,7 @@ export default function id() {
               </div>
               <div className="inner-book__read--btn-wrapper">
                 <button
-                  onClick={() => dispatch(openSignInModal())}
+                  onClick={modalOpenOnUserStatus}
                   className="inner-book__read--btn"
                 >
                   <div className="inner-book__read--icon">
@@ -86,8 +121,10 @@ export default function id() {
                   </div>
                   <div className="inner-book__read--text">Read</div>
                 </button>
-                <SignInModal />
-                <button className="inner-book__read--btn">
+                <button
+                  onClick={modalOpenOnUserStatus}
+                  className="inner-book__read--btn"
+                >
                   <div className="inner-book__read--icon">
                     <HiOutlineMicrophone className="inner__btn--icon" />
                   </div>
@@ -96,10 +133,17 @@ export default function id() {
               </div>
               <div className="inner-book__bookmark">
                 <div className="inner-book__bookmark--icon">
-                  <BsBookmark className="bookmark__icon" />
+                  {savedBook ? (
+                    <BsFillBookmarkFill className="bookmark__icon" />
+                  ) : (
+                    <BsBookmark className="bookmark__icon" />
+                  )}
                 </div>
-                <div className="inner-book__bookmark--text">
-                  Add title to My Library
+                <div
+                  onClick={saveBookInLibrary}
+                  className="inner-book__bookmark--text"
+                >
+                  {savedBook ? <span>Saved in My Library</span> : <span>Add title to My Library</span>}
                 </div>
               </div>
               <div className="inner-book__secondary--title">

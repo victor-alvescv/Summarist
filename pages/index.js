@@ -1,11 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
 import HomePage from "../components/HomePage";
 import Head from "next/head";
-import SignInModal from "@/components/modals/SignInModal";
 
 export default function Home() {
-  const isOpen = useSelector((state) => state?.modals.SignInModalOpen);
-  const dispatch = useDispatch();
 
   return (
     <>

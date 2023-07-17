@@ -3,8 +3,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
-  closeSignInModal,
-  closeSignUpModal,
+  openSignInModal,
   openSignUpModal,
 } from "@/redux/modalReducer";
 import {
@@ -27,7 +26,6 @@ export default function SignUpModal() {
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
-  const router = useRouter();
 
   async function handleSignUp() {
     setLoading(true);
@@ -37,8 +35,8 @@ export default function SignUpModal() {
         email,
         password
       );
-      dispatch(closeSignUpModal());
-      dispatch(closeSignInModal());
+      dispatch(openSignInModal());
+      dispatch(openSignInModal());
       setError("");
       setLoading(false);
     } catch (error) {
@@ -49,7 +47,7 @@ export default function SignUpModal() {
 
   function handleCloseModal() {
     setError("");
-    dispatch(closeSignUpModal());
+    dispatch(openSignUpModal());
     setEmail("");
     setPassword("");
   }
@@ -66,8 +64,8 @@ export default function SignUpModal() {
           email: currentUser?.email,
         })
       );
-      dispatch(closeSignUpModal());
-      dispatch(closeSignInModal());
+      dispatch(openSignInModal());
+      dispatch(openSignInModal());
     });
 
     return unsubscribe;

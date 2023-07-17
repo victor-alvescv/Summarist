@@ -1,10 +1,9 @@
-import React from "react";
 import SignInModal from "./modals/SignInModal";
 import { openSignInModal } from "@/redux/modalReducer";
 import { useDispatch } from "react-redux";
 
 export default function LandingPage() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <section id="landing">
