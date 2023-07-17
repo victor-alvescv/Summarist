@@ -46,7 +46,7 @@ export default function SettingsPage() {
                   Your Subscription plan
                 </div>
                 <div className="settings__text">Basic</div>
-                <a href="/choose-plan" className="btn settings__upgrade--btn">
+                <a href="/choose-plan" style={{padding: '0 32px'}} className="btn settings__upgrade--btn">
                   Upgrade to Premium
                 </a>
               </div>

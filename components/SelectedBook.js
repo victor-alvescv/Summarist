@@ -1,13 +1,16 @@
 import { openSignInModal } from "@/redux/modalReducer";
 import axios from "axios";
+
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 
 export default function SelectedBook() {
   const [selectedBook, setSelectedBook] = useState("");
   const dispatch = useDispatch()
+  const audioRef = useRef();
+  const [duration, setDuration] = useState(0);
 
   async function getSelectedBook() {
     const { data } = await axios.get(
@@ -19,6 +22,17 @@ export default function SelectedBook() {
   useEffect(() => {
     getSelectedBook();
   }, []);
+
+  const formatTime = (time) => {
+    if (time && !isNaN(time)) {
+      const minutes = Math.floor(time / 60);
+      const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+      const seconds = Math.floor(time % 60);
+      const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+      return `${formatMinutes}:${formatSeconds}`;
+    }
+    return "00:00";
+  };
 
   return (
     <>
@@ -43,7 +57,15 @@ export default function SelectedBook() {
                 <div className="selected__book--icon">
                   <TbPlayerPlayFilled className="player__icon" />
                 </div>
-                <div className="selected__book--duration">3 mins 23 secs</div>
+                {selectedBook?.audioLink && (
+                  <>
+                  <audio className="no__display" src={selectedBook?.audioLink} ref={(audioRef) => audioRef?.current[selectedBook.id]} onLoadedMetadata={() => {
+                    onLoadedMetaData(selectedBook?.id); 
+                  }}  />
+                  <div className="selected__book--duration">{formatTime(duration[selectedBook.id]) || 0}</div>
+                  </>
+                )}
+                
               </div>
             </div>
           </div>

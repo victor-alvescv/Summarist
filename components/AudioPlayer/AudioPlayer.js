@@ -5,9 +5,10 @@ import { useRef, useState } from "react";
 
 export default function AudioPlayer({ AudioData }) {
   const [timeProgress, setTimeProgress] = useState(0);
+  const progressBarRef = useRef();
   const [duration, setDuration] = useState(0);
   const audioRef = useRef();
-  const progressBarRef = useRef();
+
 
   return (
     <div className="audio-player">

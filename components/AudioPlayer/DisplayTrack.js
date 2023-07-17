@@ -12,7 +12,7 @@ export default function DisplayTrack({ AudioData, audioRef, setDuration, progres
 
   return (
     <div>
-        <audio src={AudioData} ref={audioRef} onLoadedMetadata={onLoadedMetadata} />
+        <audio src={AudioData} ref={audioRef} onLoadedMetadata={onLoadedMetadata}/>
     </div>
   )
 }

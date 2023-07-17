@@ -10,7 +10,7 @@ export default function Nav() {
         <figure className="nav__img--mask">
           <img
             className="nav__img"
-            src="https://summarist.vercel.app/_next/static/media/logo.1b1c490b.png"
+            src="/assets/logo.png"
             alt="logo"
           />
         </figure>

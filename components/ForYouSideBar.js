@@ -10,6 +10,7 @@ import { auth } from "@/firebase";
 import { useDispatch } from "react-redux";
 import { openSignInModal } from "@/redux/modalReducer";
 import SignInModal from "./modals/SignInModal";
+import {logo} from '../public/assets/logo.png'
 
 export default function ForYouSideBar({ sideBarHeight }) {
   const router = useRouter();
@@ -64,7 +65,7 @@ export default function ForYouSideBar({ sideBarHeight }) {
       <SignInModal />
       <div className="sidebar">
         <div className="sidebar__logo">
-          <img src="https://summarist.vercel.app/_next/static/media/logo.1b1c490b.png" />
+          <img src="/assets/logo.png" />
         </div>
         <div className="sidebar__wrapper">
           <div className="sidebar__top">
