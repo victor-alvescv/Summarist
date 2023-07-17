@@ -869,8 +869,8 @@ button:disabled {
 .player__icon {
   width: 100%;
   height: 100%;
-  background-color: #000;
-  color: #fff;
+  background-color: #032b41;
+  color: #fbefd6;
   display: flex;
   justify-content: center;
   border-radius: 50%;
@@ -944,7 +944,7 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 300;
   color: #6b757b;
 }

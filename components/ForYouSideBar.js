@@ -10,7 +10,7 @@ import { auth } from "@/firebase";
 import { useDispatch } from "react-redux";
 import { openSignInModal } from "@/redux/modalReducer";
 import SignInModal from "./modals/SignInModal";
-import {logo} from '../public/assets/logo.png'
+import { logo } from "../public/assets/logo.png";
 
 export default function ForYouSideBar({ sideBarHeight }) {
   const router = useRouter();
@@ -119,9 +119,7 @@ export default function ForYouSideBar({ sideBarHeight }) {
               <div className="sidebar__icon--wrapper">
                 <FiSettings className="sidebar__icon--bottom" />
               </div>
-              <div className="sidebar__link--text">
-                Settings
-              </div>
+              <div className="sidebar__link--text">Settings</div>
             </a>
             <div className="sidebar__link--wrapper sidebar__link--not-allowed">
               <div

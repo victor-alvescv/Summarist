@@ -1,6 +1,6 @@
 import ForYouSearch from "@/components/ForYouSearch";
 import ForYouSideBar from "@/components/ForYouSideBar";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineStar, AiOutlineClockCircle } from "react-icons/ai";
 import { HiOutlineMicrophone, HiOutlineLightBulb } from "react-icons/hi";
 import { VscBook } from "react-icons/vsc";
@@ -10,9 +10,9 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { openSignInModal } from "@/redux/modalReducer";
-import SignInModal from "@/components/modals/SignInModal";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
+import { VscVerifiedFilled } from "react-icons/vsc";
 
 export default function id() {
   const dispatch = useDispatch();
@@ -50,6 +50,7 @@ export default function id() {
     }
   }
 
+
   useEffect(() => {
     if (id !== undefined) {
       getBookById();
@@ -71,8 +72,8 @@ export default function id() {
           <div className="inner__wrapper">
             <div className="inner__book">
               <div className="inner__book--premium">
-              <div className="inner-book__title">{bookData.title}</div>
-              {bookData.subscriptionRequired && <TbPremiumRights />}
+                <div className="inner-book__title">{bookData.title}</div>
+                {bookData.subscriptionRequired && <TbPremiumRights />}
               </div>
               <div className="inner-book__author">{bookData.author}</div>
               <div className="inner-book__sub--title">{bookData.subTitle}</div>
@@ -83,17 +84,16 @@ export default function id() {
                       <AiOutlineStar className="inner__icon" />
                     </div>
                     <div className="inner-book__overall--rating">
-                      {bookData.averageRating}
-                    </div>
-                    <div className="inner-book__total--rating">
-                      ({bookData.totalRating})
+                      {bookData.averageRating}({bookData.totalRating})
                     </div>
                   </div>
                   <div className="inner-book__description">
                     <div className="inner-book__icon">
-                      <AiOutlineClockCircle className="inner__icon" />
+                      <VscVerifiedFilled className="inner__icon" />
                     </div>
-                    <div className="inner-book__duration">03:24</div>
+                    <div className="inner-book__duration">
+                      Verified By Professionals
+                    </div>
                   </div>
                   <div className="inner-book__description">
                     <div className="inner-book__icon">
@@ -143,7 +143,11 @@ export default function id() {
                   onClick={saveBookInLibrary}
                   className="inner-book__bookmark--text"
                 >
-                  {savedBook ? <span>Saved in My Library</span> : <span>Add title to My Library</span>}
+                  {savedBook ? (
+                    <span>Saved in My Library</span>
+                  ) : (
+                    <span>Add title to My Library</span>
+                  )}
                 </div>
               </div>
               <div className="inner-book__secondary--title">

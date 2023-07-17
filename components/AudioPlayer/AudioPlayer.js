@@ -9,13 +9,28 @@ export default function AudioPlayer({ AudioData }) {
   const [duration, setDuration] = useState(0);
   const audioRef = useRef();
 
-
   return (
     <div className="audio-player">
       <div className="inner">
-        <DisplayTrack AudioData={AudioData} audioRef={audioRef} setDuration={setDuration} progressBarRef={progressBarRef} />
-        <Controls className="audio__controls--btn" audioRef={audioRef} progressBarRef={progressBarRef} duration={duration} setTimeProgress={setTimeProgress} />
-        <ProgressBar progressBarRef={progressBarRef} audioRef={audioRef} timeProgress={timeProgress} duration={duration} />
+        <DisplayTrack
+          AudioData={AudioData}
+          audioRef={audioRef}
+          setDuration={setDuration}
+          progressBarRef={progressBarRef}
+        />
+        <Controls
+          className="audio__controls--btn"
+          audioRef={audioRef}
+          progressBarRef={progressBarRef}
+          duration={duration}
+          setTimeProgress={setTimeProgress}
+        />
+        <ProgressBar
+          progressBarRef={progressBarRef}
+          audioRef={audioRef}
+          timeProgress={timeProgress}
+          duration={duration}
+        />
       </div>
     </div>
   );
