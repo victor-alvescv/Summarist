@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClockCircle, AiOutlineStar } from "react-icons/ai";
 
-export default function RecommendedBooks() {
+export default function RecommendedBooks({ checkUserStatus }) {
   const [recommendedBooks, setRecommendedBooks] = useState([]);
   const [durations, setDurations] = useState({});
   const durationsRef = useRef({});
@@ -47,14 +47,20 @@ export default function RecommendedBooks() {
       <div className="for-you__sub--title">We think you’ll like these</div>
       <div className="for-you__recommended--books">
         {recommendedBooks.map((book) => (
-          <a href={`/book/${book.id}`} className="for-you__recommended--books-link" key={book.id}>
-            {book.subscriptionRequired && (
+          <a
+            href={`/book/${book.id}`}
+            className="for-you__recommended--books-link"
+            key={book.id}
+          >
+            {!checkUserStatus && book.subscriptionRequired && (
               <div className="book__pill">Premium</div>
             )}
             <figure className="book__image--wrapper">
               <img className="book__image" src={book.imageLink} />
             </figure>
-            <div className="recommended__book--title truncate__book--title">{book.title}</div>
+            <div className="recommended__book--title truncate__book--title">
+              {book.title}
+            </div>
             <div className="recommended__book--author">{book.author}</div>
             <div className="recommended__book--sub-title">{book.subTitle}</div>
             <div className="recommended__book--details-wrapper">

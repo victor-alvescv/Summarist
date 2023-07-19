@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { AiOutlineClockCircle, AiOutlineStar } from "react-icons/ai";
 
-export default function SuggestedBooks() {
+export default function SuggestedBooks({ checkUserStatus }) {
   const [suggestedBooks, setSuggestedBooks] = useState([]);
   const [durations, setDurations] = useState({});
   const durationsRef = useRef({});
@@ -52,7 +52,7 @@ export default function SuggestedBooks() {
             className="for-you__recommended--books-link"
             key={book.id}
           >
-            {book.subscriptionRequired && (
+            {!checkUserStatus && book.subscriptionRequired && (
               <div className="book__pill">Premium</div>
             )}
             <figure className="book__image--wrapper">

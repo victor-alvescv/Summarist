@@ -14,6 +14,9 @@ import { openSignInModal } from "@/redux/modalReducer";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
 import { VscVerifiedFilled } from "react-icons/vsc";
+import { useAuthState } from "react-firebase-hooks/auth";
+import usePremiumStatus from "@/stripe/usePremiumStatus";
+import SignInModal from "@/components/modals/SignInModal";
 
 export default function id() {
   const dispatch = useDispatch();
@@ -22,6 +25,10 @@ export default function id() {
   const [bookData, setBookData] = useState([]);
   const [user, setUser] = useState(null);
   const [savedBook, setSavedBook] = useState(null);
+  const [userStatus, setUserStatus] = useState("");
+  const [isUser, userLoading] = useAuthState(auth);
+  const userIsPremium = usePremiumStatus(isUser);
+  const checkUserStatus = usePremiumStatus(userStatus);
 
   async function getBookById() {
     const { data } = await axios.get(
@@ -45,12 +52,15 @@ export default function id() {
     if (!user) {
       dispatch(openSignInModal());
     } else if (bookData.subscriptionRequired) {
-      router.push("/choose-plan");
+      if (userIsPremium) {
+        router.push(`/player/${id}`);
+      } else {
+        router.push("/choose-plan");
+      }
     } else if (!bookData.subscriptionRequired) {
       router.push(`/player/${id}`);
     }
   }
-
 
   useEffect(() => {
     if (id !== undefined) {
@@ -58,15 +68,18 @@ export default function id() {
     }
 
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser) {
+        setUser(currentUser);
+        setUserStatus(currentUser);
+      }
     });
-
     return unsubscribe;
-  }, [id]);
+  }, [id, userStatus, user]);
 
   return (
     <>
-    <Head>
+      <SignInModal />
+      <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/assets/favicon.png" />

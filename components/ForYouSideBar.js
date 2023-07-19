@@ -17,6 +17,7 @@ export default function ForYouSideBar({ sideBarHeight }) {
 
   async function handleLogOutandLogIn() {
     await signOut(auth);
+    router.reload()
   }
 
   function LibraryRoute() {
@@ -56,7 +57,7 @@ export default function ForYouSideBar({ sideBarHeight }) {
     });
 
     return unsubscribe;
-  }, []);
+  }, [userStatus]);
 
   return (
     <>

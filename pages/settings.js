@@ -3,6 +3,7 @@ import ForYouSearch from "@/components/ForYouSearch";
 import ForYouSideBar from "@/components/ForYouSideBar";
 import SettingsPage from "@/components/SettingsPage";
 import Head from "next/head";
+import SignInModal from "@/components/modals/SignInModal";
 
 export default function settings() {
   return (
@@ -14,6 +15,7 @@ export default function settings() {
         <link href="./style.css" />
         <title>Summarist - Settings</title>
       </Head>
+      <SignInModal />
       <ForYouSearch />
       <ForYouSideBar />
       <SettingsPage />

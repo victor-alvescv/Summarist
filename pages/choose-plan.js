@@ -11,9 +11,14 @@ import { openSignInModal } from "@/redux/modalReducer";
 import SignInModal from "@/components/modals/SignInModal";
 import { auth } from "@/firebase";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { createCheckoutSession } from "@/stripe/createCheckoutSession";
+import usePremiumStatus from "@/stripe/usePremiumStatus";
+import { Ring } from "@uiball/loaders";
+import { useRouter } from "next/router";
 
 export default function choosePlan() {
-
+  const router = useRouter();
   const [div1, setDiv1] = useState(false);
   const [div2, setDiv2] = useState(false);
   const [div3, setDiv3] = useState(false);
@@ -22,7 +27,15 @@ export default function choosePlan() {
   const [activePlanYear, setActivePlanYear] = useState(true);
   const [activePlanMonth, setActivePlanMonth] = useState(false);
   const [userStatus, setUserStatus] = useState(null);
-  
+  const [user, setUser] = useState("");
+  const [isPayingMonth, setIsPayingMonth] = useState(false);
+  const [isPayingYear, setIsPayingYear] = useState(false);
+
+  const [isUser, userLoading] = useAuthState(auth);
+  const userIsPremium = usePremiumStatus(isUser);
+  const checkUserStatus = usePremiumStatus(user);
+  console.log(checkUserStatus);
+
   function handleClickMonth() {
     setActivePlanYear(false);
     setActivePlanMonth(true);
@@ -61,10 +74,21 @@ export default function choosePlan() {
     setDiv4((div4) => !div4);
   }
 
-  function handleUserStatus() {
+  function handleUserStatusMonth() {
     if (!userStatus) {
-      console.log("dhia");
       dispatch(openSignInModal());
+    } else {
+      setIsPayingMonth(true);
+      createCheckoutSession(user.uid, "price_1NVNibJAsOsQLpI72ulWTiMz");
+    }
+  }
+
+  function handleUserStatusYear() {
+    if (!userStatus) {
+      dispatch(openSignInModal());
+    } else {
+      setIsPayingYear(true);
+      createCheckoutSession(user.uid, "price_1NVOI7JAsOsQLpI7n6pS2UY3");
     }
   }
 
@@ -72,6 +96,7 @@ export default function choosePlan() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUserStatus(true);
+        setUser(currentUser);
       }
     });
     return unsubscribe;
@@ -141,7 +166,7 @@ export default function choosePlan() {
                   </div>
                   <div className="plan__card--content">
                     <div className="plan__card--title">Premium Plus Yearly</div>
-                    <div className="plan__card--price">$120.99/year</div>
+                    <div className="plan__card--price">$9.99/month</div>
                     <div className="plan__card--text">
                       7-day free trial included
                     </div>
@@ -197,11 +222,11 @@ export default function choosePlan() {
                   </div>
                 </div>
               )}
-              {activePlanYear && (
+              {isPayingYear ? (
                 <div className="plan__card--cta">
-                  <span className="btn--wrapper" onClick={handleUserStatus}>
+                  <span className="btn--wrapper" onClick={handleUserStatusYear}>
                     <button className="btn" style={{ width: "300px" }}>
-                      Start your free 7-day trial
+                      <Ring size={20} lineWeight={5} speed={2} color="white" />
                     </button>
                   </span>
                   <div className="plan__disclaimer">
@@ -209,20 +234,52 @@ export default function choosePlan() {
                     be charged.
                   </div>
                 </div>
+              ) : (
+                activePlanYear && (
+                  <div className="plan__card--cta">
+                    <span
+                      className="btn--wrapper"
+                      onClick={handleUserStatusYear}
+                    >
+                      <button className="btn" style={{ width: "300px" }}>
+                        Start your free 7-day trial
+                      </button>
+                    </span>
+                    <div className="plan__disclaimer">
+                      Cancel your trial at any time before it ends, and you
+                      won’t be charged.
+                    </div>
+                  </div>
+                )
               )}
-              {activePlanMonth && (
+              {isPayingMonth ? (
                 <div className="plan__card--cta">
-                  <span className="btn--wrapper" onClick={handleUserStatus}>
+                  <span className="btn--wrapper" onClick={handleUserStatusYear}>
                     <button className="btn" style={{ width: "300px" }}>
-                      Start your first month
+                      <Ring size={20} lineWeight={5} speed={2} color="white" />
                     </button>
                   </span>
                   <div className="plan__disclaimer">
                     30-day money back guarantee, no questions asked.
                   </div>
                 </div>
+              ) : (
+                activePlanMonth && (
+                  <div className="plan__card--cta">
+                    <span
+                      className="btn--wrapper"
+                      onClick={handleUserStatusMonth}
+                    >
+                      <button className="btn" style={{ width: "300px" }}>
+                        Start your first month
+                      </button>
+                    </span>
+                    <div className="plan__disclaimer">
+                      30-day money back guarantee, no questions asked.
+                    </div>
+                  </div>
+                )
               )}
-
               <div className="faq__wrapper">
                 <div className="accordion__card" onClick={handleDiv1}>
                   <div className="accordion__header">
