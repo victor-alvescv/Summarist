@@ -4,8 +4,19 @@ import ForYouSearch from "../components/ForYouSearch";
 import SignInModal from "@/components/modals/SignInModal";
 import React from "react";
 import Head from "next/head";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
+
 
 export default function forYou() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      AOS.init();
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -15,11 +26,13 @@ export default function forYou() {
         <link href="./style.css" />
         <title>Summarist - For you</title>
       </Head>
-      <div className="wrapper">
-        <SignInModal />
-        <ForYouSearch />
-        <ForYouSideBar />
-        <ForYouPage />
+      <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+        <div className="wrapper">
+          <SignInModal />
+          <ForYouSearch />
+          <ForYouSideBar />
+          <ForYouPage />
+        </div>
       </div>
     </>
   );

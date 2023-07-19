@@ -3,8 +3,16 @@ import ForYouSideBar from "@/components/ForYouSideBar";
 import MyLibraryPage from "@/components/MyLibraryPage.js";
 import Head from "next/head";
 import React from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function MyLibrary() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      AOS.init();
+    }
+  }, []);
   return (
     <>
       <Head>
@@ -14,9 +22,11 @@ export default function MyLibrary() {
         <link href="./style.css" />
         <title>Summarist - My Library</title>
       </Head>
-      <ForYouSearch />
-      <ForYouSideBar />
-      <MyLibraryPage />
+      <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+        <ForYouSearch />
+        <ForYouSideBar />
+        <MyLibraryPage />
+      </div>
     </>
   );
 }

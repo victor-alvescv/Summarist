@@ -1,7 +1,16 @@
 import HomePage from "../components/HomePage";
 import Head from "next/head";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      AOS.init();
+    }
+  }, []);
+
   return (
     <>
       <Head>

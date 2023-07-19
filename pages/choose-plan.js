@@ -16,6 +16,8 @@ import { createCheckoutSession } from "@/stripe/createCheckoutSession";
 import usePremiumStatus from "@/stripe/usePremiumStatus";
 import { Ring } from "@uiball/loaders";
 import { useRouter } from "next/router";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function choosePlan() {
   const router = useRouter();
@@ -93,10 +95,19 @@ export default function choosePlan() {
   }
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      AOS.init();
+    }
+  }, []);
+
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUserStatus(true);
         setUser(currentUser);
+      }
+      if (currentUser.email === "guest37899072@gmail.com") {
+        router.push("/for-you");
       }
     });
     return unsubscribe;
@@ -116,11 +127,23 @@ export default function choosePlan() {
         <div style={{ width: "100%" }} className="plan">
           <div className="plan__header--wrapper">
             <div className="plan__header">
-              <div className="plan__title">
-                Get unlimited access to many amazing books to read
+              <div
+                data-aos="fade-down"
+                data-aos-delay="100"
+                data-aos-once="true"
+              >
+                <div className="plan__title">
+                  Get unlimited access to many amazing books to read
+                </div>
               </div>
-              <div className="plan__sub--title">
-                Turn ordinary moments into amazing learning opportunities
+              <div
+                data-aos="fade-down"
+                data-aos-delay="300"
+                data-aos-once="true"
+              >
+                <div className="plan__sub--title">
+                  Turn ordinary moments into amazing learning opportunities
+                </div>
               </div>
               <figure className="plan__img--mask">
                 <img src="https://summarist.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpricing-top.4d86e93a.png&w=1080&q=75" />
@@ -130,71 +153,110 @@ export default function choosePlan() {
           <div className="row">
             <div className="container">
               <div className="plan__features--wrapper">
-                <div className="plan__features">
-                  <figure className="plan__features--icon">
-                    <AiFillFileText className="plan__icon" />
-                  </figure>
-                  <div className="plan__features--text">
-                    <b>Key ideas in few min</b> with many books to read
-                  </div>
-                </div>
-                <div className="plan__features">
-                  <figure className="plan__features--icon">
-                    <RiPlantFill className="plan__icon" />
-                  </figure>
-                  <div className="plan__features--text">
-                    <b>3 million</b> people growing with Summarist everyday
-                  </div>
-                </div>
-                <div className="plan__features">
-                  <figure className="plan__features--icon">
-                    <FaHandshake className="plan__icon" />
-                  </figure>
-                  <div className="plan__features--text">
-                    <b>Precise recommendations</b> collections curated by
-                    experts
-                  </div>
-                </div>
-              </div>
-              <div className="section__title">
-                Choose the plan that fits you
-              </div>
-              {!activePlanYear ? (
-                <div onClick={handleClickYear} className={`plan__card`}>
-                  <div className="plan__card--circle">
-                    <div className={`plan__card--dot`}></div>
-                  </div>
-                  <div className="plan__card--content">
-                    <div className="plan__card--title">Premium Plus Yearly</div>
-                    <div className="plan__card--price">$9.99/month</div>
-                    <div className="plan__card--text">
-                      7-day free trial included
-                    </div>
-                  </div>
-                </div>
-              ) : (
                 <div
-                  style={{ borderColor: "#2bd97c" }}
-                  className={`plan__card`}
+                  data-aos="fade-right"
+                  data-aos-delay="500"
+                  data-aos-once="true"
                 >
-                  <div className="plan__card--circle">
-                    <div
-                      style={{ display: "flex" }}
-                      className={`plan__card--dot`}
-                    ></div>
-                  </div>
-                  <div className="plan__card--content">
-                    <div className="plan__card--title">Premium Plus Yearly</div>
-                    <div className="plan__card--price">$9.99/month</div>
-                    <div className="plan__card--text">
-                      7-day free trial included
+                  <div className="plan__features">
+                    <figure className="plan__features--icon">
+                      <AiFillFileText className="plan__icon" />
+                    </figure>
+                    <div className="plan__features--text">
+                      <b>Key ideas in few min</b> with many books to read
                     </div>
                   </div>
                 </div>
-              )}
-
-              <div className="plan__card--separator">
-                <div className="plan__separator">or</div>
+                <div
+                  data-aos="fade-right"
+                  data-aos-delay="700"
+                  data-aos-once="true"
+                >
+                  <div className="plan__features">
+                    <figure className="plan__features--icon">
+                      <RiPlantFill className="plan__icon" />
+                    </figure>
+                    <div className="plan__features--text">
+                      <b>3 million</b> people growing with Summarist everyday
+                    </div>
+                  </div>
+                </div>
+                <div
+                  data-aos="fade-right"
+                  data-aos-delay="900"
+                  data-aos-once="true"
+                >
+                  <div className="plan__features">
+                    <figure className="plan__features--icon">
+                      <FaHandshake className="plan__icon" />
+                    </figure>
+                    <div className="plan__features--text">
+                      <b>Precise recommendations</b> collections curated by
+                      experts
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                data-aos="fade-down"
+                data-aos-delay="700"
+                data-aos-once="true"
+              >
+                <div className="section__title">
+                  Choose the plan that fits you
+                </div>
+              </div>
+              <div
+                data-aos="fade-up"
+                data-aos-delay="1200"
+                data-aos-once="true"
+              >
+                {!activePlanYear ? (
+                  <div onClick={handleClickYear} className={`plan__card`}>
+                    <div className="plan__card--circle">
+                      <div className={`plan__card--dot`}></div>
+                    </div>
+                    <div className="plan__card--content">
+                      <div className="plan__card--title">
+                        Premium Plus Yearly
+                      </div>
+                      <div className="plan__card--price">$9.99/month</div>
+                      <div className="plan__card--text">
+                        7-day free trial included
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    style={{ borderColor: "#2bd97c" }}
+                    className={`plan__card`}
+                  >
+                    <div className="plan__card--circle">
+                      <div
+                        style={{ display: "flex" }}
+                        className={`plan__card--dot`}
+                      ></div>
+                    </div>
+                    <div className="plan__card--content">
+                      <div className="plan__card--title">
+                        Premium Plus Yearly
+                      </div>
+                      <div className="plan__card--price">$9.99/month</div>
+                      <div className="plan__card--text">
+                        7-day free trial included
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div
+                data-aos="fade-in"
+                data-aos-delay="1400"
+                data-aos-once="true"
+              >
+                <div className="plan__card--separator">
+                  <div className="plan__separator">or</div>
+                </div>
               </div>
               {!activePlanMonth ? (
                 <div onClick={handleClickMonth} className="plan__card">

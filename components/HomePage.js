@@ -6,10 +6,13 @@ import Numbers from "./Numbers";
 import Footer from "./Footer";
 
 export default function HomePage() {
-
   return (
     <>
-      <div data-aos="fade-left">
+      <div
+        data-aos="fade-left"
+        data-aos-delay="50"
+        data-aos-once="true"
+      >
         <Nav />
         <LandingPage />
         <Features />

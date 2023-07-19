@@ -4,8 +4,17 @@ import ForYouSideBar from "@/components/ForYouSideBar";
 import SettingsPage from "@/components/SettingsPage";
 import Head from "next/head";
 import SignInModal from "@/components/modals/SignInModal";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function settings() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      AOS.init();
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -15,10 +24,12 @@ export default function settings() {
         <link href="./style.css" />
         <title>Summarist - Settings</title>
       </Head>
-      <SignInModal />
-      <ForYouSearch />
-      <ForYouSideBar />
-      <SettingsPage />
+      <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+        <SignInModal />
+        <ForYouSearch />
+        <ForYouSideBar />
+        <SettingsPage />
+      </div>
     </>
   );
 }

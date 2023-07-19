@@ -5,19 +5,30 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Ring } from "@uiball/loaders";
 
 export default function bookId() {
   const router = useRouter();
   const [bookData, setBookData] = useState(null);
   const { bookId } = router?.query;
   const [sideBarHeight, setSideBarHeight] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   async function getBookData() {
     const { data } = await axios.get(
       `https://us-central1-summaristt.cloudfunctions.net/getBook?id=${bookId}`
     );
     setBookData(data);
+    setLoading(false);
   }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      AOS.init();
+    }
+  }, []);
 
   useEffect(() => {
     if (bookId !== undefined) {
@@ -34,13 +45,31 @@ export default function bookId() {
         <link href="./style.css" />
         <title>Summarist - Choose Plan</title>
       </Head>
-      <ForYouSearch />
-      <ForYouSideBar sideBarHeight={sideBarHeight} />
-      <div className="summary">
-        <div className="audio__book--summary">
-          <div className="audio__book--summary-title">{bookData?.title}</div>
-          <div className="audio__book--summary-text">{bookData?.summary}</div>
-        </div>
+      <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+        <ForYouSearch />
+      </div>
+      <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+        <ForYouSideBar sideBarHeight={sideBarHeight} />
+      </div>
+      <div style={{ overflowX: "hidden" }} className="summary">
+        {!loading ? (
+          <div className="audio__book--summary">
+            <div data-aos="fade-down" data-aos-delay="200" data-aos-once="true">
+              <div className="audio__book--summary-title">
+                {bookData?.title}
+              </div>
+            </div>
+            <div data-aos="fade-in" data-aos-delay="400" data-aos-once="true">
+              <div className="audio__book--summary-text">
+                {bookData?.summary}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="loading__icon">
+            <Ring size={50} lineWeight={5} speed={2} color="#032b41" />
+          </div>
+        )}
         <div className="audio__wrapper">
           <div className="audio__track--wrapper">
             <figure className="audio__track--image-mask">
