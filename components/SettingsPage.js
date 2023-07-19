@@ -46,18 +46,12 @@ export default function SettingsPage() {
           ) : (
             <>
               {userStatus === "guest37899072@gmail.com" ? (
-                <div
-                  className="settings__text"
-                  style={{
-                    maxWidth: "250px",
-                    margin: "0 auto",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  This is a Guest Profile, you can only have acess to limited
-                  books, Create an account and choose a plan to check our
-                  products!
+                <div className="row error__row--wrapper">
+                  <figure className="error__wrapper">
+                    <img className="guest" src="/assets/guest.svg" />
+                  </figure>
+                  <div className="page__not__found">Guest Profile</div>
+                  <div style={{maxWidth: '500px', margin: '0 auto', textAlign: 'center', color: '#6b757b'}} className="settings__text">This is a Guest Profile. To have information about your profile, you first need to create one!</div>
                 </div>
               ) : (
                 <>
@@ -85,15 +79,12 @@ export default function SettingsPage() {
                   </div>
                 </>
               )}
-
-              <div className="setting__content">
-                <div className="settings__sub--title">Email</div>
-                {userStatus === "guest37899072@gmail.com" ? (
-                  <div className="settings__text">Guest Profile</div>
-                ) : (
+              {userStatus !== "guest37899072@gmail.com" && (
+                <div className="setting__content">
+                  <div className="settings__sub--title">Email</div>
                   <div className="settings__text">{userStatus}</div>
-                )}
-              </div>
+                </div>
+              )}
             </>
           )}
         </div>

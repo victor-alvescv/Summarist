@@ -1964,6 +1964,12 @@ input[type="range"]:active::-moz-range-thumb {
   margin: 0 auto;
 }
 
+.guest {
+  max-width: 300px;
+  max-height: 300px;
+  margin: 0 auto;
+}
+
 .error__row--wrapper {
   display: flex;
   align-items: center;

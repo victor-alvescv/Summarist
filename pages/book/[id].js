@@ -49,15 +49,21 @@ export default function id() {
   }
 
   function modalOpenOnUserStatus() {
-    if (!user) {
+    if (user?.email === "guest37899072@gmail.com") {
       dispatch(openSignInModal());
-    } else if (bookData.subscriptionRequired) {
+    } else if (!user) {
+      dispatch(openSignInModal());
+    }
+    if (bookData?.subscriptionRequired) {
       if (userIsPremium) {
         router.push(`/player/${id}`);
-      } else {
+      } else if (
+        user?.email !== "guest37899072@gmail.com" ||
+        (false && !userIsPremium)
+      ) {
         router.push("/choose-plan");
       }
-    } else if (!bookData.subscriptionRequired) {
+    } else if (!bookData?.subscriptionRequired) {
       router.push(`/player/${id}`);
     }
   }
@@ -87,7 +93,7 @@ export default function id() {
         <title>Summarist - Book Detail</title>
       </Head>
       <ForYouSearch />
-      <ForYouSideBar />
+      <ForYouSideBar id={id} />
       <div className="row">
         <div className="container">
           <div className="inner__wrapper">

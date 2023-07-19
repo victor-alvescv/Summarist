@@ -10,14 +10,16 @@ import { auth } from "@/firebase";
 import { useDispatch } from "react-redux";
 import { openSignInModal } from "@/redux/modalReducer";
 
-export default function ForYouSideBar({ sideBarHeight }) {
+export default function ForYouSideBar({ sideBarHeight, id }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const [userStatus, setUserStatus] = useState(null);
 
   async function handleLogOutandLogIn() {
     await signOut(auth);
-    router.reload()
+    if (router.pathname === `/book/[id]`) {
+      router.reload();
+    }
   }
 
   function LibraryRoute() {
