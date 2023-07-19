@@ -9,8 +9,6 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/firebase";
 import { useDispatch } from "react-redux";
 import { openSignInModal } from "@/redux/modalReducer";
-import SignInModal from "./modals/SignInModal";
-import { logo } from "../public/assets/logo.png";
 
 export default function ForYouSideBar({ sideBarHeight }) {
   const router = useRouter();
@@ -62,7 +60,6 @@ export default function ForYouSideBar({ sideBarHeight }) {
 
   return (
     <>
-      <SignInModal />
       <div className="sidebar">
         <div className="sidebar__logo">
           <img src="/assets/logo.png" />

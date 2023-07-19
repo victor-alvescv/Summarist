@@ -3,14 +3,14 @@ import ForYouSearch from "@/components/ForYouSearch";
 import ForYouSideBar from "@/components/ForYouSideBar";
 import axios from "axios";
 import { useRouter } from "next/router";
-
+import Head from "next/head";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 
 export default function bookId() {
   const router = useRouter();
   const [bookData, setBookData] = useState(null);
   const { bookId } = router?.query;
-  const [sideBarHeight, setSideBarHeight] = useState(true)
+  const [sideBarHeight, setSideBarHeight] = useState(true);
 
   async function getBookData() {
     const { data } = await axios.get(
@@ -27,8 +27,15 @@ export default function bookId() {
 
   return (
     <>
-      <ForYouSearch  />
-      <ForYouSideBar sideBarHeight={sideBarHeight}  />
+      <Head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="/assets/favicon.png" />
+        <link href="./style.css" />
+        <title>Summarist - Choose Plan</title>
+      </Head>
+      <ForYouSearch />
+      <ForYouSideBar sideBarHeight={sideBarHeight} />
       <div className="summary">
         <div className="audio__book--summary">
           <div className="audio__book--summary-title">{bookData?.title}</div>
@@ -56,7 +63,7 @@ export default function bookId() {
           </div>
           <div className="audio__controls--wrapper">
             <div className="audio__controls">
-            <AudioPlayer AudioData={bookData?.audioLink} />
+              <AudioPlayer AudioData={bookData?.audioLink} />
             </div>
           </div>
         </div>

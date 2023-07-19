@@ -3,7 +3,6 @@ import SelectedBook from "../components/SelectedBook";
 import RecommendedBooks from "../components/RecommendedBooks";
 import SuggestedBooks from "../components/SuggestedBooks";
 
-
 export default function ForYouPage() {
   const audioRef = useRef(null);
   const audioDuration = useRef(0);

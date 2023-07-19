@@ -54,7 +54,7 @@ export default function RecommendedBooks() {
             <figure className="book__image--wrapper">
               <img className="book__image" src={book.imageLink} />
             </figure>
-            <div className="recommended__book--title">{book.title}</div>
+            <div className="recommended__book--title truncate__book--title">{book.title}</div>
             <div className="recommended__book--author">{book.author}</div>
             <div className="recommended__book--sub-title">{book.subTitle}</div>
             <div className="recommended__book--details-wrapper">

@@ -2,20 +2,18 @@ import { Modal } from "@mui/material";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { openSignInModal, openSignUpModal } from "@/redux/modalReducer";
 import {
-  openSignInModal,
-  openSignUpModal,
-} from "@/redux/modalReducer";
-import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { setUser } from "@/redux/userReducer";
-import { useRouter } from "next/router";
 import { Ring } from "@uiball/loaders";
-import { auth, provider } from "@/firebase";
+import { auth, db } from "@/firebase";
 import { signInWithPopup } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function SignUpModal() {
   const isOpen = useSelector((state) => state.modals.SignUpModalOpen);
@@ -26,6 +24,7 @@ export default function SignUpModal() {
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
+  const [googleAuth, setGoogleAuth] = useState(false);
 
   async function handleSignUp() {
     setLoading(true);
@@ -35,7 +34,10 @@ export default function SignUpModal() {
         email,
         password
       );
-      dispatch(openSignInModal());
+      const user = {
+        email: email,
+      };
+      addDoc(collection(db, "users"), user);
       dispatch(openSignInModal());
       setError("");
       setLoading(false);
@@ -52,8 +54,17 @@ export default function SignUpModal() {
     setPassword("");
   }
 
-  function handleGoogleSignIn() {
-    alert("Not implemented yet");
+  async function handleGoogleSignIn() {
+    setGoogleAuth(true);
+    try {
+      const provider = new GoogleAuthProvider();
+      console.log(provider);
+      await signInWithPopup(auth, provider);
+      dispatch(openSignInModal());
+    } catch (error) {
+      alert(error);
+      setGoogleAuth(false);
+    }
   }
 
   useEffect(() => {
@@ -64,10 +75,7 @@ export default function SignUpModal() {
           email: currentUser?.email,
         })
       );
-      dispatch(openSignInModal());
-      dispatch(openSignInModal());
     });
-
     return unsubscribe;
   });
 
@@ -85,15 +93,35 @@ export default function SignUpModal() {
               {error}
             </div>
           )}
-          <button onClick={handleGoogleSignIn} className="google__btn--wrapper">
-            <figure className="google__img--wrapper">
-              <img
-                className="google__img"
-                src="https://img.freepik.com/icones-gratis/procurar_318-265146.jpg?w=360"
-              />
-            </figure>
-            <div className="modal--google__btn">Sign up with Google</div>
-          </button>
+          {!googleAuth ? (
+            <button
+              onClick={handleGoogleSignIn}
+              className="google__btn--wrapper"
+            >
+              <figure className="google__img--wrapper">
+                <img
+                  className="google__img"
+                  src="https://img.freepik.com/icones-gratis/procurar_318-265146.jpg?w=360"
+                />
+              </figure>
+              <div className="modal--google__btn">Sign up with Google</div>
+            </button>
+          ) : (
+            <button
+              onClick={handleGoogleSignIn}
+              className="google__btn--wrapper"
+            >
+              <figure className="google__img--wrapper">
+                <img
+                  className="google__img"
+                  src="https://img.freepik.com/icones-gratis/procurar_318-265146.jpg?w=360"
+                />
+              </figure>
+              <div className="modal--google__btn">
+                <Ring size={20} lineWeight={5} speed={2} color="white" />
+              </div>
+            </button>
+          )}
           <div className="btn__separator">
             <span className="btn__separator--text">or</span>
           </div>

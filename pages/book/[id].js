@@ -1,7 +1,8 @@
 import ForYouSearch from "@/components/ForYouSearch";
 import ForYouSideBar from "@/components/ForYouSideBar";
-import React, { useEffect, useRef, useState } from "react";
-import { AiOutlineStar, AiOutlineClockCircle } from "react-icons/ai";
+import React, { useEffect, useState } from "react";
+import { AiOutlineStar } from "react-icons/ai";
+import Head from "next/head";
 import { HiOutlineMicrophone, HiOutlineLightBulb } from "react-icons/hi";
 import { VscBook } from "react-icons/vsc";
 import { TbPremiumRights } from "react-icons/tb";
@@ -65,6 +66,13 @@ export default function id() {
 
   return (
     <>
+    <Head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="/assets/favicon.png" />
+        <link href="./style.css" />
+        <title>Summarist - Book Detail</title>
+      </Head>
       <ForYouSearch />
       <ForYouSideBar />
       <div className="row">

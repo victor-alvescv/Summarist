@@ -6,7 +6,12 @@ import { useDispatch } from "react-redux";
 import { openSignInModal } from "@/redux/modalReducer";
 import SignUpModal from "./SignUpModal";
 import PasswordModal from "./ForgotPasswordModal";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "@/firebase";
 import { setUser } from "@/redux/userReducer";
@@ -24,6 +29,7 @@ export default function SignInModal() {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [guestAuth, setGuestAuth] = useState(false);
+  const [googleAuth, setGoogleAuth] = useState(false);
 
   async function handleSignIn() {
     setLoading(true);
@@ -46,8 +52,16 @@ export default function SignInModal() {
     dispatch(openSignInModal());
   }
 
-  function handleGoogleSignIn() {
-    alert("Not implemented yet");
+  async function handleGoogleSignIn() {
+    setGoogleAuth(true);
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      dispatch(openSignInModal());
+    } catch (error) {
+      alert(error);
+      setGoogleAuth(false);
+    }
   }
 
   async function handleGuestSignIn(email, password) {
@@ -119,9 +133,15 @@ export default function SignInModal() {
                 src="https://img.freepik.com/icones-gratis/procurar_318-265146.jpg?w=360"
               />
             </figure>
-            <div onClick={handleGoogleSignIn} className="modal--google__btn">
-              Login with Google
-            </div>
+            {googleAuth ? (
+              <div className="modal--guest__btn">
+                <Ring size={20} lineWeight={5} speed={2} color="white" />
+              </div>
+            ) : (
+              <div onClick={handleGoogleSignIn} className="modal--google__btn">
+                Login with Google
+              </div>
+            )}
           </button>
           <div className="btn__separator">
             <span className="btn__separator--text">or</span>

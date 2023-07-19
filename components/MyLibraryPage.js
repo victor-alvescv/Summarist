@@ -27,24 +27,12 @@ export default function MyLibraryPage() {
       <div className="container">
         {userStatus ? (
           <>
-            <div className="for-you__title">Saved Books</div>
-            <div className="for-you__sub--title">0 items</div>
             <div className="finished__books--block-wrapper">
               <div className="finished__books--title">
-                Save your favorite books!
+                This feature was not implemented yet!
               </div>
               <div className="finished__books--subtitle">
-                When you save a book, it will appear here.
-              </div>
-            </div>
-            <div className="for-you__title">Finished</div>
-            <div className="for-you__sub--title">0 items</div>
-            <div className="finished__books--block-wrapper">
-              <div className="finished__books--title">
-                Review the books you finished!
-              </div>
-              <div className="finished__books--subtitle">
-                When you finish a book, it will appear here.
+                When you click to save a book, it will appear here.
               </div>
             </div>
           </>

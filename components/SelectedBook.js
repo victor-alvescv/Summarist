@@ -31,7 +31,7 @@ export default function SelectedBook() {
             <img className="book__image" src={selectedBook.imageLink} />
           </figure>
           <div style={{ width: "100%" }}>
-            <div className="selected__book--title">{selectedBook.title}</div>
+            <div className="selected__book--title truncate__book--title">{selectedBook.title}</div>
             <div className="selected__book--author">{selectedBook.author}</div>
             <div className="selected__book--duration-wrapper">
               <div className="selected__book--icon">
