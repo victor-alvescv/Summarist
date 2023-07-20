@@ -58,7 +58,6 @@ export default function SignUpModal() {
     setGoogleAuth(true);
     try {
       const provider = new GoogleAuthProvider();
-      console.log(provider);
       await signInWithPopup(auth, provider);
       dispatch(openSignInModal());
     } catch (error) {

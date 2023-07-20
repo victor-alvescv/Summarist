@@ -8,6 +8,10 @@ import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Ring } from "@uiball/loaders";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import usePremiumStatus from "@/stripe/usePremiumStatus";
 
 export default function bookId() {
   const router = useRouter();
@@ -15,6 +19,9 @@ export default function bookId() {
   const { bookId } = router?.query;
   const [sideBarHeight, setSideBarHeight] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState("");
+  const [isUser, userLoading] = useAuthState(auth);
+  const userIsPremium = usePremiumStatus(isUser);
 
   async function getBookData() {
     const { data } = await axios.get(
@@ -34,7 +41,18 @@ export default function bookId() {
     if (bookId !== undefined) {
       getBookData();
     }
-  }, [bookId]);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      }
+      if (!user) {
+        router.push(`/for-you`);
+      } else if (!userIsPremium && bookData?.subscriptionRequired) {
+        router.push(`/for-you`);
+      }
+    });
+    return unsubscribe;
+  }, [bookId, user]);
 
   return (
     <>

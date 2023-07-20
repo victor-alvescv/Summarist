@@ -55,13 +55,18 @@ export default function id() {
   function modalOpenOnUserStatus() {
     if (user?.email === "guest37899072@gmail.com" || !user) {
       dispatch(openSignInModal());
-      return
+      return;
     }
-
-    if(userIsPremium && user) {
-      router.push(`/player/${id}`)
-    } else if ( !userIsPremium && user?.email !== "guest37899072@gmail.com") {
-      router.push(`/choose-plan`)
+    if (userIsPremium && user) {
+      router.push(`/player/${id}`);
+    } else if (
+      !userIsPremium &&
+      user?.email !== "guest37899072@gmail.com" &&
+      bookData?.subscriptionRequired
+    ) {
+      router.push(`/choose-plan`);
+    } else if (user && !bookData?.subscriptionRequired) {
+      router.push(`/player/${id}`);
     }
   }
 

@@ -36,7 +36,6 @@ export default function choosePlan() {
   const [isUser, userLoading] = useAuthState(auth);
   const userIsPremium = usePremiumStatus(isUser);
   const checkUserStatus = usePremiumStatus(user);
-  console.log(checkUserStatus);
 
   function handleClickMonth() {
     setActivePlanYear(false);
