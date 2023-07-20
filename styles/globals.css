@@ -1870,7 +1870,6 @@ input[type="range"]::-webkit-slider-thumb {
   justify-content: center;
   align-items: center;
   gap: 300px;
-  margin-right: 1200px;
 }
 
 .progress {
@@ -2006,6 +2005,172 @@ input[type="range"]:active::-moz-range-thumb {
   background-color: #ebebeb;
 }
 
+.sidebar__toggle--btn {
+  display: none;
+}
+
+.progressBarFix {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .error {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 800px) {
+  .plan__title {
+    font-size: 32px;
+  }
+  .plan__sub--title {
+    font-size: 16px;
+  }
+
+  .settings__login--text {
+    font-size: 14px;
+  }
+
+  .inner__wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .inner-book__book--description {
+    font-size: 14px;
+  }
+
+  .inner-book__author--description {
+    font-size: 14px;
+  }
+
+  .inner-book__title {
+    font-size: 24px;
+  }
+
+  .inner-book__secondary--title {
+    font-size: 16px;
+  }
+
+  .inner-book__sub--title {
+    font-size: 18px;
+  }
+
+  .book__image--wrapper {
+    margin: 0 auto
+  }
+
+  .settings__row {
+    margin-left: 0px;
+  }
+
+  .plan__img--mask {
+    max-width: 300px;
+  }
+
+  .plan__icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .plan__features--text {
+    font-size: 14px;
+  }
+
+  .section__title {
+    font-size: 20px;
+  }
+
+  .accordion__title {
+    font-size: 18px;
+  }
+
+  .plan__features--wrapper {
+    display: initial;
+    gap: 10px;
+    max-width: 100px;
+  }
+
+  .plan__features--text {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .plan__features {
+    margin-bottom: 30px;
+  }
+
+  .accordion__body {
+    font-size: 12px;
+  }
+
+  .auth {
+    padding: 32px 32px 0px 32px;
+    max-width: 350px;
+    min-height: 400px;
+  }
+
+  .guest__btn--wrapper {
+    width: 300px;
+  }
+
+  .google__btn--wrapper {
+    width: 300px;
+  }
+
+  .btn__separator::after {
+    width: 100px;
+  }
+
+  .btn__separator::before {
+    width: 100px;
+  }
+
+  .modal__input {
+    width: 300px;
+  }
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .wrapper {
+    margin: initial;
+    width: initial;
+  }
+  .selected__book {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .selected__book--sub-title {
+    font-size: 14px;
+    min-width: 300px;
+  }
+
+  .search__books--wrapper {
+    right: 0px;
+    overflow-x: hidden;
+  }
+
+  .search {
+    width: 80%;
+  }
+
+  .sidebar__toggle--btn {
+    display: flex;
+    margin-left: 12px;
+  }
+
+  .sidebar__toggle {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .selected__book {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .landing__content {
     display: flex;
@@ -2014,6 +2179,12 @@ input[type="range"]:active::-moz-range-thumb {
     text-align: center;
     max-width: 540px;
     margin: 0 auto;
+  }
+
+  .sidebar__toggle {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
   }
 
   .landing__image--mask {
@@ -2057,10 +2228,6 @@ input[type="range"]:active::-moz-range-thumb {
 
   .statistics__data--title {
     font-size: 16px;
-  }
-
-  .section__title {
-    font-size: 24px;
   }
 
   .features__title {

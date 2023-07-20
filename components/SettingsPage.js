@@ -36,7 +36,7 @@ export default function SettingsPage() {
         <div className="row">
           {!loading ? (
             userStatus === false ? (
-              <div className="settings__login--wrapper">
+              <div className="settings__login--wrapper settings__row--user">
                 <img src="https://summarist.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogin.e313e580.png&w=1080&q=75" />
                 <div className="settings__login--text">
                   Log in to your account to see your library.

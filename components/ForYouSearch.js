@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { AiOutlineSearch, AiOutlineStar } from "react-icons/ai";
-import { RxCross2 } from "react-icons/rx";
+import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 
 export default function ForYouSearch() {
   const [input, setInput] = useState("");
@@ -18,6 +18,10 @@ export default function ForYouSearch() {
     } catch (error) {
       alert(error);
     }
+  }
+
+  function handleSideBar() {
+    
   }
 
   function handleChange(value) {
@@ -59,7 +63,9 @@ export default function ForYouSearch() {
               )}
             </div>
           </div>
-          <div className="sidebar__toggle--btn"></div>
+          <div className="sidebar__toggle--btn">
+          <RxHamburgerMenu onClick={handleSideBar} className="sidebar__toggle" />
+          </div>
         </div>
         {input && search.length === 0 ? (
           <div className="search__books--wrapper">No book found</div>

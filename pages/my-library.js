@@ -6,6 +6,7 @@ import React from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import SignInModal from "@/components/modals/SignInModal";
 
 export default function MyLibrary() {
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function MyLibrary() {
         <title>Summarist - My Library</title>
       </Head>
       <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+      <SignInModal />
         <ForYouSearch />
         <ForYouSideBar />
         <MyLibraryPage />

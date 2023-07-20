@@ -4,6 +4,7 @@ import ForYouSearch from "../components/ForYouSearch";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import SignInModal from "@/components/modals/SignInModal";
 
 export default function errorPage() {
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function errorPage() {
   return (
     <>
       <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+      <SignInModal />
         <ForYouSideBar />
         <ForYouSearch />
         <div className="container">

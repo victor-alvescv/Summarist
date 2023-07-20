@@ -30,7 +30,7 @@ export default function forYou() {
         <div className="wrapper">
           <SignInModal />
           <ForYouSearch />
-          <ForYouSideBar />
+          <ForYouSideBar className="responsive__sidebar" />
           <ForYouPage />
         </div>
       </div>

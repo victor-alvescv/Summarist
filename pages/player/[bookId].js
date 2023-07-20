@@ -12,6 +12,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import usePremiumStatus from "@/stripe/usePremiumStatus";
+import SignInModal from "@/components/modals/SignInModal";
+import ProgressBar from "../../components/AudioPlayer/ProgressBar";
 
 export default function bookId() {
   const router = useRouter();
@@ -45,11 +47,6 @@ export default function bookId() {
       if (currentUser) {
         setUser(currentUser);
       }
-      if (!user) {
-        router.push(`/for-you`);
-      } else if (!userIsPremium && bookData?.subscriptionRequired) {
-        router.push(`/for-you`);
-      }
     });
     return unsubscribe;
   }, [bookId, user]);
@@ -63,6 +60,7 @@ export default function bookId() {
         <link href="./style.css" />
         <title>Summarist - Choose Plan</title>
       </Head>
+      <SignInModal />
       <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
         <ForYouSearch />
       </div>
@@ -104,7 +102,7 @@ export default function bookId() {
               </figure>
             </figure>
             <div className="audio__track--details-wrapper">
-              <div className="audio__track--title">{bookData?.title}</div>
+              <div className="audio__track--title truncate">{bookData?.title}</div>
               <div className="audio__track--author">{bookData?.author}</div>
             </div>
           </div>

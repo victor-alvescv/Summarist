@@ -37,8 +37,6 @@ export default function SelectedBook() {
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.08)",
               borderRadius: "3px",
-              width: "67%",
-              height: "190px",
             }}
             href={`book/${selectedBook.id}`}
             className="selected__book"

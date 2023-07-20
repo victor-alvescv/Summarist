@@ -122,188 +122,184 @@ export default function choosePlan() {
         <link href="./style.css" />
         <title>Summarist - Choose Plan</title>
       </Head>
-      <div className="wrapper wrapper__full">
-        <div style={{ width: "100%" }} className="plan">
-          <div className="plan__header--wrapper">
-            <div className="plan__header">
-              <div
-                data-aos="fade-down"
-                data-aos-delay="100"
-                data-aos-once="true"
-              >
-                <div className="plan__title">
-                  Get unlimited access to many amazing books to read
-                </div>
-              </div>
-              <div
-                data-aos="fade-down"
-                data-aos-delay="300"
-                data-aos-once="true"
-              >
-                <div className="plan__sub--title">
-                  Turn ordinary moments into amazing learning opportunities
-                </div>
-              </div>
-              <figure className="plan__img--mask">
-                <img src="https://summarist.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpricing-top.4d86e93a.png&w=1080&q=75" />
-              </figure>
-            </div>
-          </div>
-          <div className="row">
-            <div className="container">
-              <div className="plan__features--wrapper">
+      <div data-aos="fade-in" data-aos-delay="50" data-aos-once="true">
+        <div className="wrapper wrapper__full">
+          <div style={{ width: "100%" }} className="plan">
+            <div className="plan__header--wrapper">
+              <div className="plan__header">
                 <div
-                  data-aos="fade-right"
-                  data-aos-delay="500"
+                  data-aos="fade-down"
+                  data-aos-delay="100"
                   data-aos-once="true"
                 >
-                  <div className="plan__features">
-                    <figure className="plan__features--icon">
-                      <AiFillFileText className="plan__icon" />
-                    </figure>
-                    <div className="plan__features--text">
-                      <b>Key ideas in few min</b> with many books to read
+                  <div className="plan__title">
+                    Get unlimited access to many amazing books to read
+                  </div>
+                </div>
+                <div
+                  data-aos="fade-down"
+                  data-aos-delay="300"
+                  data-aos-once="true"
+                >
+                  <div className="plan__sub--title">
+                    Turn ordinary moments into amazing learning opportunities
+                  </div>
+                </div>
+                <figure className="plan__img--mask">
+                  <img src="https://summarist.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpricing-top.4d86e93a.png&w=1080&q=75" />
+                </figure>
+              </div>
+            </div>
+            <div className="row">
+              <div className="container">
+                <div className="plan__features--wrapper">
+                  <div
+                    data-aos="fade-right"
+                    data-aos-delay="500"
+                    data-aos-once="true"
+                  >
+                    <div className="plan__features">
+                      <figure className="plan__features--icon">
+                        <AiFillFileText className="plan__icon" />
+                      </figure>
+                      <div className="plan__features--text">
+                        <b>Key ideas in few min</b> with many books to read
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    data-aos="fade-right"
+                    data-aos-delay="700"
+                    data-aos-once="true"
+                  >
+                    <div className="plan__features">
+                      <figure className="plan__features--icon">
+                        <RiPlantFill className="plan__icon" />
+                      </figure>
+                      <div className="plan__features--text">
+                        <b>3 million</b> people growing with Summarist everyday
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    data-aos="fade-right"
+                    data-aos-delay="900"
+                    data-aos-once="true"
+                  >
+                    <div className="plan__features">
+                      <figure className="plan__features--icon">
+                        <FaHandshake className="plan__icon" />
+                      </figure>
+                      <div className="plan__features--text">
+                        <b>Precise recommendations</b> collections curated by
+                        experts
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  data-aos="fade-right"
+                  data-aos="fade-down"
                   data-aos-delay="700"
                   data-aos-once="true"
                 >
-                  <div className="plan__features">
-                    <figure className="plan__features--icon">
-                      <RiPlantFill className="plan__icon" />
-                    </figure>
-                    <div className="plan__features--text">
-                      <b>3 million</b> people growing with Summarist everyday
-                    </div>
+                  <div className="section__title">
+                    Choose the plan that fits you
                   </div>
                 </div>
                 <div
-                  data-aos="fade-right"
-                  data-aos-delay="900"
+                  data-aos="fade-up"
+                  data-aos-delay="1200"
                   data-aos-once="true"
                 >
-                  <div className="plan__features">
-                    <figure className="plan__features--icon">
-                      <FaHandshake className="plan__icon" />
-                    </figure>
-                    <div className="plan__features--text">
-                      <b>Precise recommendations</b> collections curated by
-                      experts
+                  {!activePlanYear ? (
+                    <div onClick={handleClickYear} className={`plan__card`}>
+                      <div className="plan__card--circle">
+                        <div className={`plan__card--dot`}></div>
+                      </div>
+                      <div className="plan__card--content">
+                        <div className="plan__card--title">
+                          Premium Plus Yearly
+                        </div>
+                        <div className="plan__card--price">$9.99/month</div>
+                        <div className="plan__card--text">
+                          7-day free trial included
+                        </div>
+                      </div>
                     </div>
+                  ) : (
+                    <div
+                      style={{ borderColor: "#2bd97c" }}
+                      className={`plan__card`}
+                    >
+                      <div className="plan__card--circle">
+                        <div
+                          style={{ display: "flex" }}
+                          className={`plan__card--dot`}
+                        ></div>
+                      </div>
+                      <div className="plan__card--content">
+                        <div className="plan__card--title">
+                          Premium Plus Yearly
+                        </div>
+                        <div className="plan__card--price">$9.99/month</div>
+                        <div className="plan__card--text">
+                          7-day free trial included
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div
+                  data-aos="fade-in"
+                  data-aos-delay="1400"
+                  data-aos-once="true"
+                >
+                  <div className="plan__card--separator">
+                    <div className="plan__separator">or</div>
                   </div>
                 </div>
-              </div>
-              <div
-                data-aos="fade-down"
-                data-aos-delay="700"
-                data-aos-once="true"
-              >
-                <div className="section__title">
-                  Choose the plan that fits you
-                </div>
-              </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="1200"
-                data-aos-once="true"
-              >
-                {!activePlanYear ? (
-                  <div onClick={handleClickYear} className={`plan__card`}>
+                {!activePlanMonth ? (
+                  <div onClick={handleClickMonth} className="plan__card">
                     <div className="plan__card--circle">
-                      <div className={`plan__card--dot`}></div>
+                      <div className="plan__card--dot"></div>
                     </div>
                     <div className="plan__card--content">
-                      <div className="plan__card--title">
-                        Premium Plus Yearly
-                      </div>
-                      <div className="plan__card--price">$9.99/month</div>
-                      <div className="plan__card--text">
-                        7-day free trial included
-                      </div>
+                      <div className="plan__card--title">Premium Monthly</div>
+                      <div className="plan__card--price">$14.99/month</div>
+                      <div className="plan__card--text">No trial included</div>
                     </div>
                   </div>
                 ) : (
                   <div
                     style={{ borderColor: "#2bd97c" }}
-                    className={`plan__card`}
+                    className="plan__card"
                   >
                     <div className="plan__card--circle">
                       <div
                         style={{ display: "flex" }}
-                        className={`plan__card--dot`}
+                        className="plan__card--dot"
                       ></div>
                     </div>
                     <div className="plan__card--content">
-                      <div className="plan__card--title">
-                        Premium Plus Yearly
-                      </div>
-                      <div className="plan__card--price">$9.99/month</div>
-                      <div className="plan__card--text">
-                        7-day free trial included
-                      </div>
+                      <div className="plan__card--title">Premium Monthly</div>
+                      <div className="plan__card--price">$14.99/month</div>
+                      <div className="plan__card--text">No trial included</div>
                     </div>
                   </div>
                 )}
-              </div>
-              <div
-                data-aos="fade-in"
-                data-aos-delay="1400"
-                data-aos-once="true"
-              >
-                <div className="plan__card--separator">
-                  <div className="plan__separator">or</div>
-                </div>
-              </div>
-              {!activePlanMonth ? (
-                <div onClick={handleClickMonth} className="plan__card">
-                  <div className="plan__card--circle">
-                    <div className="plan__card--dot"></div>
-                  </div>
-                  <div className="plan__card--content">
-                    <div className="plan__card--title">Premium Monthly</div>
-                    <div className="plan__card--price">$14.99/month</div>
-                    <div className="plan__card--text">No trial included</div>
-                  </div>
-                </div>
-              ) : (
-                <div style={{ borderColor: "#2bd97c" }} className="plan__card">
-                  <div className="plan__card--circle">
-                    <div
-                      style={{ display: "flex" }}
-                      className="plan__card--dot"
-                    ></div>
-                  </div>
-                  <div className="plan__card--content">
-                    <div className="plan__card--title">Premium Monthly</div>
-                    <div className="plan__card--price">$14.99/month</div>
-                    <div className="plan__card--text">No trial included</div>
-                  </div>
-                </div>
-              )}
-              {isPayingYear ? (
-                <div className="plan__card--cta">
-                  <span className="btn--wrapper" onClick={handleUserStatusYear}>
-                    <button className="btn" style={{ width: "300px" }}>
-                      <Ring size={20} lineWeight={5} speed={2} color="white" />
-                    </button>
-                  </span>
-                  <div className="plan__disclaimer">
-                    Cancel your trial at any time before it ends, and you won’t
-                    be charged.
-                  </div>
-                </div>
-              ) : (
-                activePlanYear && (
+                {isPayingYear ? (
                   <div className="plan__card--cta">
                     <span
                       className="btn--wrapper"
                       onClick={handleUserStatusYear}
                     >
                       <button className="btn" style={{ width: "300px" }}>
-                        Start your free 7-day trial
+                        <Ring
+                          size={20}
+                          lineWeight={5}
+                          speed={2}
+                          color="white"
+                        />
                       </button>
                     </span>
                     <div className="plan__disclaimer">
@@ -311,186 +307,215 @@ export default function choosePlan() {
                       won’t be charged.
                     </div>
                   </div>
-                )
-              )}
-              {isPayingMonth ? (
-                <div className="plan__card--cta">
-                  <span className="btn--wrapper" onClick={handleUserStatusYear}>
-                    <button className="btn" style={{ width: "300px" }}>
-                      <Ring size={20} lineWeight={5} speed={2} color="white" />
-                    </button>
-                  </span>
-                  <div className="plan__disclaimer">
-                    30-day money back guarantee, no questions asked.
-                  </div>
-                </div>
-              ) : (
-                activePlanMonth && (
+                ) : (
+                  activePlanYear && (
+                    <div className="plan__card--cta">
+                      <span
+                        className="btn--wrapper"
+                        onClick={handleUserStatusYear}
+                      >
+                        <button className="btn" style={{ width: "300px" }}>
+                          Start your free 7-day trial
+                        </button>
+                      </span>
+                      <div className="plan__disclaimer">
+                        Cancel your trial at any time before it ends, and you
+                        won’t be charged.
+                      </div>
+                    </div>
+                  )
+                )}
+                {isPayingMonth ? (
                   <div className="plan__card--cta">
                     <span
                       className="btn--wrapper"
-                      onClick={handleUserStatusMonth}
+                      onClick={handleUserStatusYear}
                     >
                       <button className="btn" style={{ width: "300px" }}>
-                        Start your first month
+                        <Ring
+                          size={20}
+                          lineWeight={5}
+                          speed={2}
+                          color="white"
+                        />
                       </button>
                     </span>
                     <div className="plan__disclaimer">
                       30-day money back guarantee, no questions asked.
                     </div>
                   </div>
-                )
-              )}
-              <div className="faq__wrapper">
-                <div className="accordion__card" onClick={handleDiv1}>
-                  <div className="accordion__header">
-                    <div className="accordion__title">
-                      How does the free 7-day trial work?
+                ) : (
+                  activePlanMonth && (
+                    <div className="plan__card--cta">
+                      <span
+                        className="btn--wrapper"
+                        onClick={handleUserStatusMonth}
+                      >
+                        <button className="btn" style={{ width: "300px" }}>
+                          Start your first month
+                        </button>
+                      </span>
+                      <div className="plan__disclaimer">
+                        30-day money back guarantee, no questions asked.
+                      </div>
+                    </div>
+                  )
+                )}
+                <div className="faq__wrapper">
+                  <div className="accordion__card" onClick={handleDiv1}>
+                    <div className="accordion__header">
+                      <div className="accordion__title">
+                        How does the free 7-day trial work?
+                      </div>
+                      {div1 ? (
+                        <SlArrowDown
+                          style={{ transform: "rotate(180deg)" }}
+                          className="accordion__icon rotate"
+                        />
+                      ) : (
+                        <SlArrowDown className="accordion__icon" />
+                      )}
                     </div>
                     {div1 ? (
-                      <SlArrowDown
-                        style={{ transform: "rotate(180deg)" }}
-                        className="accordion__icon rotate"
-                      />
+                      <div style={{ height: "126px" }} className="collapse">
+                        <div className="accordion__body">
+                          Begin your complimentary 7-day trial with a Summarist
+                          annual membership. You are under no obligation to
+                          continue your subscription, and you will only be
+                          billed when the trial period expires. With Premium
+                          access, you can learn at your own pace and as
+                          frequently as you desire, and you may terminate your
+                          subscription prior to the conclusion of the 7-day free
+                          trial.
+                        </div>
+                      </div>
                     ) : (
-                      <SlArrowDown className="accordion__icon" />
+                      <div style={{ height: "0px" }} className="collapse">
+                        <div className="accordion__body">
+                          Begin your complimentary 7-day trial with a Summarist
+                          annual membership. You are under no obligation to
+                          continue your subscription, and you will only be
+                          billed when the trial period expires. With Premium
+                          access, you can learn at your own pace and as
+                          frequently as you desire, and you may terminate your
+                          subscription prior to the conclusion of the 7-day free
+                          trial.
+                        </div>
+                      </div>
                     )}
                   </div>
-                  {div1 ? (
-                    <div style={{ height: "96px" }} className="collapse">
-                      <div className="accordion__body">
-                        Begin your complimentary 7-day trial with a Summarist
-                        annual membership. You are under no obligation to
-                        continue your subscription, and you will only be billed
-                        when the trial period expires. With Premium access, you
-                        can learn at your own pace and as frequently as you
-                        desire, and you may terminate your subscription prior to
-                        the conclusion of the 7-day free trial.
+                  <div className="accordion__card" onClick={handleDiv2}>
+                    <div className="accordion__header">
+                      <div className="accordion__title">
+                        Can I switch subscriptions from monthly to yearly, or
+                        yearly to monthly?
                       </div>
-                    </div>
-                  ) : (
-                    <div style={{ height: "0px" }} className="collapse">
-                      <div className="accordion__body">
-                        Begin your complimentary 7-day trial with a Summarist
-                        annual membership. You are under no obligation to
-                        continue your subscription, and you will only be billed
-                        when the trial period expires. With Premium access, you
-                        can learn at your own pace and as frequently as you
-                        desire, and you may terminate your subscription prior to
-                        the conclusion of the 7-day free trial.
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="accordion__card" onClick={handleDiv2}>
-                  <div className="accordion__header">
-                    <div className="accordion__title">
-                      Can I switch subscriptions from monthly to yearly, or
-                      yearly to monthly?
+                      {div2 ? (
+                        <SlArrowDown
+                          style={{ transform: "rotate(180deg)" }}
+                          className="accordion__icon rotate"
+                        />
+                      ) : (
+                        <SlArrowDown className="accordion__icon" />
+                      )}
                     </div>
                     {div2 ? (
-                      <SlArrowDown
-                        style={{ transform: "rotate(180deg)" }}
-                        className="accordion__icon rotate"
-                      />
+                      <div style={{ height: "96px" }} className="collapse">
+                        <div className="accordion__body">
+                          While an annual plan is active, it is not feasible to
+                          switch to a monthly plan. However, once the current
+                          month ends, transitioning from a monthly plan to an
+                          annual plan is an option.
+                        </div>
+                      </div>
                     ) : (
-                      <SlArrowDown className="accordion__icon" />
+                      <div style={{ height: "0px" }} className="collapse">
+                        <div className="accordion__body">
+                          While an annual plan is active, it is not feasible to
+                          switch to a monthly plan. However, once the current
+                          month ends, transitioning from a monthly plan to an
+                          annual plan is an option.
+                        </div>
+                      </div>
                     )}
                   </div>
-                  {div2 ? (
-                    <div style={{ height: "96px" }} className="collapse">
-                      <div className="accordion__body">
-                        While an annual plan is active, it is not feasible to
-                        switch to a monthly plan. However, once the current
-                        month ends, transitioning from a monthly plan to an
-                        annual plan is an option.
+                  <div className="accordion__card" onClick={handleDiv3}>
+                    <div className="accordion__header">
+                      <div className="accordion__title">
+                        What's included in the Premium plan?
                       </div>
-                    </div>
-                  ) : (
-                    <div style={{ height: "0px" }} className="collapse">
-                      <div className="accordion__body">
-                        While an annual plan is active, it is not feasible to
-                        switch to a monthly plan. However, once the current
-                        month ends, transitioning from a monthly plan to an
-                        annual plan is an option.
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="accordion__card" onClick={handleDiv3}>
-                  <div className="accordion__header">
-                    <div className="accordion__title">
-                      What's included in the Premium plan?
+                      {div3 ? (
+                        <SlArrowDown
+                          style={{ transform: "rotate(180deg)" }}
+                          className="accordion__icon rotate"
+                        />
+                      ) : (
+                        <SlArrowDown className="accordion__icon" />
+                      )}
                     </div>
                     {div3 ? (
-                      <SlArrowDown
-                        style={{ transform: "rotate(180deg)" }}
-                        className="accordion__icon rotate"
-                      />
+                      <div style={{ height: "96px" }} className="collapse">
+                        <div className="accordion__body">
+                          Premium membership provides you with the ultimate
+                          Summarist experience, including unrestricted entry to
+                          many best-selling books high-quality audio, the
+                          ability to download titles for offline reading, and
+                          the option to send your reads to your Kindle.
+                        </div>
+                      </div>
                     ) : (
-                      <SlArrowDown className="accordion__icon" />
+                      <div style={{ height: "0px" }} className="collapse">
+                        <div className="accordion__body">
+                          Premium membership provides you with the ultimate
+                          Summarist experience, including unrestricted entry to
+                          many best-selling books high-quality audio, the
+                          ability to download titles for offline reading, and
+                          the option to send your reads to your Kindle.
+                        </div>
+                      </div>
                     )}
                   </div>
-                  {div3 ? (
-                    <div style={{ height: "96px" }} className="collapse">
-                      <div className="accordion__body">
-                        Premium membership provides you with the ultimate
-                        Summarist experience, including unrestricted entry to
-                        many best-selling books high-quality audio, the ability
-                        to download titles for offline reading, and the option
-                        to send your reads to your Kindle.
+                  <div className="accordion__card" onClick={handleDiv4}>
+                    <div className="accordion__header">
+                      <div className="accordion__title">
+                        Can I cancel during my trial or subscription?
                       </div>
-                    </div>
-                  ) : (
-                    <div style={{ height: "0px" }} className="collapse">
-                      <div className="accordion__body">
-                        Premium membership provides you with the ultimate
-                        Summarist experience, including unrestricted entry to
-                        many best-selling books high-quality audio, the ability
-                        to download titles for offline reading, and the option
-                        to send your reads to your Kindle.
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="accordion__card" onClick={handleDiv4}>
-                  <div className="accordion__header">
-                    <div className="accordion__title">
-                      Can I cancel during my trial or subscription?
+                      {div4 ? (
+                        <SlArrowDown
+                          style={{ transform: "rotate(180deg)" }}
+                          className="accordion__icon rotate"
+                        />
+                      ) : (
+                        <SlArrowDown className="accordion__icon" />
+                      )}
                     </div>
                     {div4 ? (
-                      <SlArrowDown
-                        style={{ transform: "rotate(180deg)" }}
-                        className="accordion__icon rotate"
-                      />
+                      <div style={{ height: "96px" }} className="collapse">
+                        <div className="accordion__body">
+                          You will not be charged if you cancel your trial
+                          before its conclusion. While you will not have
+                          complete access to the entire Summarist library, you
+                          can still expand your knowledge with one curated book
+                          per day.
+                        </div>
+                      </div>
                     ) : (
-                      <SlArrowDown className="accordion__icon" />
+                      <div style={{ height: "0px" }} className="collapse">
+                        <div className="accordion__body">
+                          You will not be charged if you cancel your trial
+                          before its conclusion. While you will not have
+                          complete access to the entire Summarist library, you
+                          can still expand your knowledge with one curated book
+                          per day.
+                        </div>
+                      </div>
                     )}
                   </div>
-                  {div4 ? (
-                    <div style={{ height: "96px" }} className="collapse">
-                      <div className="accordion__body">
-                        You will not be charged if you cancel your trial before
-                        its conclusion. While you will not have complete access
-                        to the entire Summarist library, you can still expand
-                        your knowledge with one curated book per day.
-                      </div>
-                    </div>
-                  ) : (
-                    <div style={{ height: "0px" }} className="collapse">
-                      <div className="accordion__body">
-                        You will not be charged if you cancel your trial before
-                        its conclusion. While you will not have complete access
-                        to the entire Summarist library, you can still expand
-                        your knowledge with one curated book per day.
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
         </div>
       </div>
     </>
