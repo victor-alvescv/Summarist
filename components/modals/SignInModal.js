@@ -71,6 +71,7 @@ export default function SignInModal() {
       "guest37899072@gmail.com",
       "GDhdfug9dgiowhd"
     );
+    setGuestAuth(false)
     dispatch(openSignInModal());
   }
 

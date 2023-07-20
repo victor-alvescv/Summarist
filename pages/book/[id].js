@@ -53,22 +53,15 @@ export default function id() {
   }
 
   function modalOpenOnUserStatus() {
-    if (user?.email === "guest37899072@gmail.com") {
+    if (user?.email === "guest37899072@gmail.com" || !user) {
       dispatch(openSignInModal());
-    } else if (!user) {
-      dispatch(openSignInModal());
+      return
     }
-    if (bookData?.subscriptionRequired) {
-      if (userIsPremium) {
-        router.push(`/player/${id}`);
-      } else if (
-        user?.email !== "guest37899072@gmail.com" ||
-        (false && !userIsPremium)
-      ) {
-        router.push("/choose-plan");
-      }
-    } else if (!bookData?.subscriptionRequired) {
-      router.push(`/player/${id}`);
+
+    if(userIsPremium && user) {
+      router.push(`/player/${id}`)
+    } else if ( !userIsPremium && user?.email !== "guest37899072@gmail.com") {
+      router.push(`/choose-plan`)
     }
   }
 

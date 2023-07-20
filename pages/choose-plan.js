@@ -106,7 +106,7 @@ export default function choosePlan() {
         setUserStatus(true);
         setUser(currentUser);
       }
-      if (currentUser.email === "guest37899072@gmail.com") {
+      if (currentUser?.email === "guest37899072@gmail.com") {
         router.push("/for-you");
       }
     });

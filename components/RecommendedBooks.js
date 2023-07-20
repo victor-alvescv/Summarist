@@ -67,7 +67,7 @@ export default function RecommendedBooks({ checkUserStatus }) {
           ></div>
           <div className="for-you__recommended--books">
             {new Array(4).fill(0).map((_, index) => (
-              <a className="for-you__recommended--books-link" key={index}>
+              <a className="" key={index}>
                 <div
                   style={{
                     backgroundColor: "rgba(0, 0, 0, 0.08)",
