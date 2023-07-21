@@ -60,55 +60,63 @@ export default function bookId() {
         <link href="./style.css" />
         <title>Summarist - Choose Plan</title>
       </Head>
-      <SignInModal />
-      <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
-        <ForYouSearch />
-      </div>
-      <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
-        <ForYouSideBar sideBarHeight={sideBarHeight} />
-      </div>
-      <div style={{ overflowX: "hidden" }} className="summary">
-        {!loading ? (
-          <div className="audio__book--summary">
-            <div data-aos="fade-down" data-aos-delay="200" data-aos-once="true">
-              <div className="audio__book--summary-title">
-                {bookData?.title}
-              </div>
-            </div>
-            <div data-aos="fade-in" data-aos-delay="400" data-aos-once="true">
-              <div className="audio__book--summary-text">
-                {bookData?.summary}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="loading__icon">
-            <Ring size={50} lineWeight={5} speed={2} color="#032b41" />
-          </div>
-        )}
-        <div className="audio__wrapper">
-          <div className="audio__track--wrapper">
-            <figure className="audio__track--image-mask">
-              <figure
-                className="book__image--wrapper"
-                style={{
-                  height: "48px",
-                  width: "48px",
-                  minWidth: "48px",
-                  marginBottom: "initial",
-                }}
+      <div className="wrapper">
+        <SignInModal />
+        <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+          <ForYouSearch />
+        </div>
+        <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
+          <ForYouSideBar sideBarHeight={sideBarHeight} />
+        </div>
+        <div className="summary">
+          {!loading ? (
+            <div className="audio__book--summary">
+              <div
+                data-aos="fade-down"
+                data-aos-delay="200"
+                data-aos-once="true"
               >
-                <img className="book__image" src={bookData?.imageLink} />
-              </figure>
-            </figure>
-            <div className="audio__track--details-wrapper">
-              <div className="audio__track--title truncate">{bookData?.title}</div>
-              <div className="audio__track--author">{bookData?.author}</div>
+                <div className="audio__book--summary-title">
+                  {bookData?.title}
+                </div>
+              </div>
+              <div data-aos="fade-in" data-aos-delay="400" data-aos-once="true">
+                <div className="audio__book--summary-text">
+                  {bookData?.summary}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="audio__controls--wrapper">
-            <div className="audio__controls">
-              <AudioPlayer AudioData={bookData?.audioLink} />
+          ) : (
+            <div className="loading__icon">
+              <Ring size={50} lineWeight={5} speed={2} color="#032b41" />
+            </div>
+          )}
+          <div className="audio__wrapper">
+            <div className="audio__track--wrapper">
+              <figure className="audio__track--image-mask">
+                <figure
+                  className="book__image--wrapper"
+                  style={{
+                    height: "48px",
+                    width: "48px",
+                    minWidth: "48px",
+                    marginBottom: "initial",
+                  }}
+                >
+                  <img className="book__image" src={bookData?.imageLink} />
+                </figure>
+              </figure>
+              <div className="audio__track--details-wrapper">
+                <div className="audio__track--title truncate-player">
+                  {bookData?.title}
+                </div>
+                <div className="audio__track--author">{bookData?.author}</div>
+              </div>
+            </div>
+            <div className="audio__controls--wrapper">
+              <div className="audio__controls">
+                <AudioPlayer AudioData={bookData?.audioLink} />
+              </div>
             </div>
           </div>
         </div>

@@ -24,10 +24,12 @@ export default function MyLibrary() {
         <title>Summarist - My Library</title>
       </Head>
       <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
-      <SignInModal />
-        <ForYouSearch />
-        <ForYouSideBar />
-        <MyLibraryPage />
+        <div className="wrapper">
+          <SignInModal />
+          <ForYouSearch />
+          <ForYouSideBar />
+          <MyLibraryPage />
+        </div>
       </div>
     </>
   );

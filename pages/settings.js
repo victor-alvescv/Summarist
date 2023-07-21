@@ -25,10 +25,12 @@ export default function settings() {
         <title>Summarist - Settings</title>
       </Head>
       <div data-aos="fade-left" data-aos-delay="50" data-aos-once="true">
-        <SignInModal />
-        <ForYouSearch />
-        <ForYouSideBar />
-        <SettingsPage />
+        <div className="wrapper">
+          <SignInModal />
+          <ForYouSearch />
+          <ForYouSideBar />
+          <SettingsPage />
+        </div>
       </div>
     </>
   );

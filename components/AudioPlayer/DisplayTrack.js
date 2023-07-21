@@ -11,7 +11,7 @@ export default function DisplayTrack({ AudioData, audioRef, setDuration, progres
 
 
   return (
-    <div>
+    <div style={{display: 'none'}}>
         <audio src={AudioData} ref={audioRef} onLoadedMetadata={onLoadedMetadata}/>
     </div>
   )

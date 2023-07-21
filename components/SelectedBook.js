@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useDispatch } from "react-redux";
@@ -59,7 +60,7 @@ export default function SelectedBook() {
       ) : (
         <>
           <div className="for-you__title">Selected just for you</div>
-          <a href={`book/${selectedBook.id}`} className="selected__book">
+          <Link href={`book/${selectedBook.id}`} className="selected__book">
             <div className="selected__book--sub-title">
               {selectedBook.subTitle}
             </div>
@@ -85,7 +86,7 @@ export default function SelectedBook() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </>
       )}
     </>

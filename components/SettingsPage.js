@@ -2,6 +2,7 @@ import { auth } from "@/firebase";
 import { openSignInModal } from "@/redux/modalReducer";
 import usePremiumStatus from "@/stripe/usePremiumStatus";
 import { onAuthStateChanged } from "firebase/auth";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
@@ -83,13 +84,13 @@ export default function SettingsPage() {
                         <>
                           {" "}
                           <div className="settings__text">Basic</div>
-                          <a
+                          <Link
                             href="/choose-plan"
                             style={{ padding: "0 32px" }}
                             className="btn settings__upgrade--btn"
                           >
                             Upgrade to Premium
-                          </a>
+                          </Link>
                         </>
                       )}
                     </div>

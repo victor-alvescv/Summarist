@@ -25,7 +25,7 @@ export default function AudioPlayer({ AudioData }) {
           duration={duration}
           setTimeProgress={setTimeProgress}
         />
-        <ProgressBar className="progressBarFix"
+        <ProgressBar
           progressBarRef={progressBarRef}
           audioRef={audioRef}
           timeProgress={timeProgress}

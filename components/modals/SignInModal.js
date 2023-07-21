@@ -35,6 +35,7 @@ export default function SignInModal() {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      setLoading(false)
       dispatch(openSignInModal());
     } catch (error) {
       setError(error.message);
@@ -110,7 +111,7 @@ export default function SignInModal() {
               {error}
             </div>
           )}
-          <button className="guest__btn--wrapper">
+          <button onClick={handleGuestSignIn} className="guest__btn--wrapper">
             <figure className="guest__img--wrapper">
               <BsFillPersonFill className="guest__img" />
             </figure>
@@ -119,7 +120,7 @@ export default function SignInModal() {
                 <Ring size={20} lineWeight={5} speed={2} color="white" />
               </div>
             ) : (
-              <div onClick={handleGuestSignIn} className="modal--guest__btn">
+              <div className="modal--guest__btn">
                 Login as a Guest
               </div>
             )}
@@ -127,7 +128,7 @@ export default function SignInModal() {
           <div className="btn__separator">
             <span className="btn__separator--text">or</span>
           </div>
-          <button className="google__btn--wrapper">
+          <button onClick={handleGoogleSignIn} className="google__btn--wrapper">
             <figure className="google__img--wrapper">
               <img
                 className="google__img"
@@ -139,7 +140,7 @@ export default function SignInModal() {
                 <Ring size={20} lineWeight={5} speed={2} color="white" />
               </div>
             ) : (
-              <div onClick={handleGoogleSignIn} className="modal--google__btn">
+              <div className="modal--google__btn">
                 Login with Google
               </div>
             )}

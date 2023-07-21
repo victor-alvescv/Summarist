@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClockCircle, AiOutlineStar } from "react-icons/ai";
 
@@ -139,7 +140,7 @@ export default function RecommendedBooks({ checkUserStatus }) {
           <div className="for-you__sub--title">We think you’ll like these</div>
           <div className="for-you__recommended--books">
             {recommendedBooks.map((book) => (
-              <a
+              <Link
                 href={`/book/${book.id}`}
                 className="for-you__recommended--books-link"
                 key={book.id}
@@ -171,7 +172,7 @@ export default function RecommendedBooks({ checkUserStatus }) {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

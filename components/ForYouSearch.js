@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import React, { useState } from "react";
 import { AiOutlineSearch, AiOutlineStar } from "react-icons/ai";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
@@ -21,7 +22,10 @@ export default function ForYouSearch() {
   }
 
   function handleSideBar() {
-    
+    const sideBar = document.querySelector(".sidebar");
+    const sideBarOverlay = document.querySelector(".sidebar__overlay");
+    sideBar.style.transform = "initial";
+    sideBarOverlay.style.display = "flex";
   }
 
   function handleChange(value) {
@@ -64,7 +68,10 @@ export default function ForYouSearch() {
             </div>
           </div>
           <div className="sidebar__toggle--btn">
-          <RxHamburgerMenu onClick={handleSideBar} className="sidebar__toggle" />
+            <RxHamburgerMenu
+              onClick={handleSideBar}
+              className="sidebar__toggle"
+            />
           </div>
         </div>
         {input && search.length === 0 ? (
@@ -73,7 +80,7 @@ export default function ForYouSearch() {
           input && (
             <div className="search__books--wrapper">
               {search.map((book) => (
-                <a
+                <Link
                   href={`/book/${book.id}`}
                   className="search__book--link"
                   key={book?.id}
@@ -96,7 +103,7 @@ export default function ForYouSearch() {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           )
