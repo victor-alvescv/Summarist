@@ -93,6 +93,7 @@ export default function RecommendedBooks({ checkUserStatus }) {
                     borderRadius: "3px",
                     width: "85%",
                     height: "15px",
+                    marginTop: "20px",
                   }}
                   className="recommended__book--title"
                 ></div>
