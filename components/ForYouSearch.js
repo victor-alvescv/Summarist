@@ -9,15 +9,13 @@ export default function ForYouSearch() {
   const [search, setSearch] = useState([]);
   const [debounce, setDebounce] = useState("");
 
-  async function fetchData(value) {
+  async function fetchData(input) {
     try {
-      if (value) {
         const { data } = await axios.get(
           `https://us-central1-summaristt.cloudfunctions.net/getBooksByAuthorOrTitle?search=${input}`
         );
         setSearch(data);
-      }
-    } catch (error) {
+      } catch (error) {
       alert(error);
     }
   }
@@ -34,7 +32,7 @@ export default function ForYouSearch() {
     setTimeout(() => {
       setDebounce(true)
       fetchData(value);
-    }, 1000)
+    }, 5000)
   }
 
   function handleClearSearch() {

@@ -13,7 +13,6 @@ import { auth } from "@/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import usePremiumStatus from "@/stripe/usePremiumStatus";
 import SignInModal from "@/components/modals/SignInModal";
-import ProgressBar from "../../components/AudioPlayer/ProgressBar";
 
 export default function bookId() {
   const router = useRouter();

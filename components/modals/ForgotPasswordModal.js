@@ -3,7 +3,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { closePasswordModal, openPasswordModal } from "@/redux/modalReducer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Ring } from "@uiball/loaders";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/firebase";

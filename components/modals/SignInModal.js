@@ -36,12 +36,14 @@ export default function SignInModal() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setLoading(false)
+      setError('')
       dispatch(openSignInModal());
     } catch (error) {
       setError(error.message);
       setLoading(false);
     }
   }
+
 
   function handleCloseModal() {
     setLoading(false);
@@ -76,6 +78,8 @@ export default function SignInModal() {
     dispatch(openSignInModal());
   }
 
+
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setValue(localStorage.getItem("email"));
@@ -93,6 +97,7 @@ export default function SignInModal() {
     });
     return unsubscribe;
   }, []);
+
 
   return (
     <>

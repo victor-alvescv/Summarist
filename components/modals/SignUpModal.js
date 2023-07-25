@@ -39,6 +39,7 @@ export default function SignUpModal() {
       };
       addDoc(collection(db, "users"), user);
       dispatch(openSignInModal());
+      dispatch(openSignUpModal())
       setError("");
       setLoading(false);
     } catch (error) {
@@ -65,6 +66,8 @@ export default function SignUpModal() {
       setGoogleAuth(false);
     }
   }
+
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
