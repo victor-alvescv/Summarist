@@ -2320,6 +2320,31 @@ input[type="range"]:active::-moz-range-thumb {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
 
+  .sidebar__bottom {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 390px) {
+  .selected__book--content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .selected__book {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .selected__book--sub-title {
+    min-width: 200px;
+    text-align: center;
+  }
+
+  .selectedFix {
+    text-align: center;
   }
 }

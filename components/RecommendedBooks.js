@@ -66,8 +66,8 @@ export default function RecommendedBooks({ checkUserStatus }) {
             }}
             className="for-you__sub--title"
           ></div>
-          <div className="for-you__recommended--books">
-            {new Array(4).fill(0).map((_, index) => (
+          <div className="for-you__recommended--books" style={{overflowX: 'initial'}}>
+            {new Array(5).fill(0).map((_, index) => (
               <a className="" key={index}>
                 <div
                   style={{

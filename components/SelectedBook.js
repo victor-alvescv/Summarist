@@ -71,7 +71,7 @@ export default function SelectedBook() {
               >
                 <img className="book__image" src={selectedBook.imageLink} />
               </figure>
-              <div style={{ width: "100%" }}>
+              <div className="selectedFix" style={{ width: "100%" }}>
                 <div className="selected__book--title truncate__book--title">
                   {selectedBook.title}
                 </div>

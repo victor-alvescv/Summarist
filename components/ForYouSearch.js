@@ -7,6 +7,7 @@ import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 export default function ForYouSearch() {
   const [input, setInput] = useState("");
   const [search, setSearch] = useState([]);
+  const [debounce, setDebounce] = useState("");
 
   async function fetchData(value) {
     try {
@@ -23,14 +24,17 @@ export default function ForYouSearch() {
 
   function handleSideBar() {
     const sideBar = document.querySelector(".sidebar");
-    const sideBarOverlay = document.querySelector(".sidebar__overlay");
+    const sideBarOverlay = document.querySelector(".sidebar__overlay");''
     sideBar.style.transform = "initial";
     sideBarOverlay.style.display = "flex";
   }
 
   function handleChange(value) {
     setInput(value);
-    fetchData(value);
+    setTimeout(() => {
+      setDebounce(true)
+      fetchData(value);
+    }, 1000)
   }
 
   function handleClearSearch() {
@@ -74,7 +78,7 @@ export default function ForYouSearch() {
             />
           </div>
         </div>
-        {input && search.length === 0 ? (
+        {debounce && input && search.length === 0 ? (
           <div className="search__books--wrapper">No book found</div>
         ) : (
           input && (

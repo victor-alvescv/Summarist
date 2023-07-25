@@ -134,6 +134,7 @@ export default function SignUpModal() {
             <input
               className="modal__input"
               placeholder="Password"
+              type={"password"}
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             {loading ? (
